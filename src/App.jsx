@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import Header from './components/header/header'
-import Button from '@material-ui/core/Button';
-
+import Header from './components/header/header';
+import Footer from './components/footer/footer';
 
 function App() {
  
   return (
     <div>
       <Header/>
+      <Footer/>
     </div>
 
   )

@@ -1,6 +1,5 @@
 
 export async function register({email, password, e}){
-    alert("Enter Register")
     console.log(email)
     console.log(password)
     // Here we fetch against API

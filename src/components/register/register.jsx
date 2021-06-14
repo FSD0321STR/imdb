@@ -51,6 +51,8 @@ const [password,setPassword]=useState("");
 
 async function handleSubmit(e){
     e.preventDefault();
+    let reg = await register({email,password});
+    console.log(reg)
 }
 
 function handleEmailInput(e){

@@ -17,10 +17,64 @@ import searchResults from "./components/pages/search-results";
 
 function App() {
 	return (
-		<div>
-			<Header />
-			<Footer />
-		</div>
+		<BrowserRouter>
+
+			<AuthProvider>
+
+				<Header />
+
+				<Switch>
+
+					<Route exact path="/terms-of-use">
+						<termsOfUse />
+					</Route>
+
+					<Route exact path="/cookies-policy">
+						<cookiesPolicy />
+					</Route>
+
+					<Route exact path="/privacy-policy">
+						<privacyPolicy />
+					</Route>
+
+					<Route exact path="/search-results">
+						<searchResults />
+					</Route>
+
+					<Route exact path="/contact">
+						<Contact />
+					</Route>
+
+					<Route exact path="/trends">
+						<Trends />
+					</Route>
+
+					<Route exact path="/categories">
+						<Categories />
+					</Route>
+
+					<Route exact path="/about">
+						<About />
+					</Route>
+
+					<Private exact path="/profile">
+						<Profile />
+					</Private>
+
+					<Route path="/">
+						<Home />
+					</Route>
+
+				</Switch>
+
+				<Footer />
+
+			</AuthProvider>
+
+		</BrowserRouter>
+
+
+
 	);
 }
 

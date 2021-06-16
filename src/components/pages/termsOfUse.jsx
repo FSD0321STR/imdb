@@ -2,11 +2,11 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 
 
-export default function privacyPolicy() {
+export default function TermsOfUse() {
 
     return (
         <Typography component="h1">
-            Privacy Policy
+            Terms of Use
         </Typography>
     );
 }

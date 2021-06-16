@@ -10,10 +10,10 @@ import Categories from "./components/pages/categories";
 import Trends from "./components/pages/trends";
 import Contact from "./components/pages/contact";
 import Profile from "./components/pages/profile";
-import privacyPolicy from "./components/pages/privacy-policy";
-import cookiesPolicy from "./components/pages/cookies-policy";
-import termsOfUse from "./components/pages/terms-of-use";
-import searchResults from "./components/pages/search-results";
+import PrivacyPolicy from "./components/pages/privacyPolicy";
+import CookiesPolicy from "./components/pages/cookiesPolicy";
+import TermsOfUse from "./components/pages/termsOfUse";
+import SearchResults from "./components/pages/searchResults";
 
 
 function App() {
@@ -27,19 +27,19 @@ function App() {
 				<Switch>
 
 					<Route exact path="/terms-of-use">
-						<termsOfUse />
+						<TermsOfUse />
 					</Route>
 
 					<Route exact path="/cookies-policy">
-						<cookiesPolicy />
+						<CookiesPolicy />
 					</Route>
 
 					<Route exact path="/privacy-policy">
-						<privacyPolicy />
+						<PrivacyPolicy />
 					</Route>
 
 					<Route exact path="/search-results">
-						<searchResults />
+						<SearchResults />
 					</Route>
 
 					<Route exact path="/contact">

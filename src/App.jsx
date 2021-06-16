@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-//import AuthProvider from "./components/auth-provider"
+import AuthProvider from "./components/auth-provider";
+import Private from "./components/private-route";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import Home from "./components/pages/home";
@@ -72,8 +73,6 @@ function App() {
 			</AuthProvider>
 
 		</BrowserRouter>
-
-
 
 	);
 }

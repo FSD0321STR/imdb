@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import { Box } from "@material-ui/core";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import Register from "../register/register";
 import Collapse from "@material-ui/core/Collapse";
+import { Box } from '@material-ui/core';
+import { Link } from "react-router-dom";
+import useAuth from '../../hooks/useAuth';
 
 export default function Header() {
 	const [anchorEl, setAnchorEl] = React.useState(null);

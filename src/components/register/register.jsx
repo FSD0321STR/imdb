@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function SignInSide() {
+export default function RegisterSide() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 

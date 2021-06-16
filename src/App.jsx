@@ -31,7 +31,7 @@ function App() {
 					</Route>
 
 					<Route exact path="/cookies-policy">
-						<cookiesPolicy />
+						<CookiesPolicy />
 					</Route>
 
 					<Route exact path="/privacy-policy">

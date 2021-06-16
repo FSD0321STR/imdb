@@ -1,6 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+//import AuthProvider from "./components/auth-provider"
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
+import Home from "./components/pages/home";
+import About from "./components/pages/about";
+import Categories from "./components/pages/categories";
+import Trends from "./components/pages/trends";
+import Contact from "./components/pages/contact";
+import Profile from "./components/pages/profile";
+import privacyPolicy from "./components/pages/privacy-policy";
+import cookiesPolicy from "./components/pages/cookies-policy";
+import termsOfUse from "./components/pages/terms-of-use";
+import searchResults from "./components/pages/search-results";
+
 
 function App() {
 	return (

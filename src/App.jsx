@@ -5,7 +5,7 @@ import Private from "./components/private-route";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import Category from "./components/categories/category" 
-
+import Tema from "./components/tema/tema";
 import Home from "./components/pages/home";
 import About from "./components/pages/about";
 import Categories from "./components/pages/categories";
@@ -70,7 +70,7 @@ function App() {
 
 				</Switch>
 					<Category /> 
-
+					<Tema/>
 					
 				<Footer /> 
 

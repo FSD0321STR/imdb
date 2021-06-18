@@ -6,6 +6,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { Box, Icon } from "@material-ui/core";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import AnimatedModal from "../login-modal/loginModal";
+import { Link } from "react-router-dom";
 
 export default function Header() {
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -79,7 +80,9 @@ export default function Header() {
 				)}
 
 				<Button color="primary">Get Started</Button>
-				<Button color="primary">Profile</Button>
+				<Link to="/profile" color="primary">
+					Profile
+				</Link>
 			</div>
 			<AnimatedModal open={open} onClose={handleCloseModal} />
 		</Box>

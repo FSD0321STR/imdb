@@ -1,21 +1,11 @@
-import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
-import useAuth from '../hooks/useAuth';
+import React from "react";
+import { Redirect, Route } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
-function Private({children, ...props}){
-    
-    const {logged}=useAuth();
-    
-    return(
+function Private({ children, ...props }) {
+	const { logged } = useAuth();
 
-        <Route {...props}>
-            
-            {logged ? children : <Redirect to="/login" />}
-            
-        </Route>
-
-
-    )
+	return <Route {...props}>{logged ? children : <Redirect to="/" />}</Route>;
 }
 
-export default Private
+export default Private;

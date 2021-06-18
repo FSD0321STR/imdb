@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import { Box, Icon } from '@material-ui/core';
-import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
-import AnimatedModal from '../login-modal/loginModal'
-import { Link } from "react-router-dom";
-import { makeStyles } from '@material-ui/core/styles';
-import useAuth from '../../hooks/useAuth';
-
+import React, { useState } from "react";
+import useAuth from "../../hooks/useAuth";
+import Button from "@material-ui/core/Button";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import { Box, Icon } from "@material-ui/core";
+import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
+import AnimatedModal from "../login-modal/loginModal";
 
 export default function Header() {
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -21,7 +18,6 @@ export default function Header() {
 		setAnchorEl(null);
 	};
 
-
 	const handleOpenModal = () => {
 		setOpen(true);
 	};
@@ -29,13 +25,18 @@ export default function Header() {
 		setOpen(false);
 	};
 
+	const { logged, logout } = useAuth();
 
 	return (
 		<Box display="flex" justifyContent="space-between" padding="20px">
 			<AccountBalanceIcon />
 
 			<div>
-				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+				<Button
+					aria-controls="simple-menu"
+					aria-haspopup="true"
+					onClick={handleClick}
+				>
 					Trend
 				</Button>
 				<Menu
@@ -49,7 +50,11 @@ export default function Header() {
 					<MenuItem onClick={handleClose}>My account</MenuItem>
 					<MenuItem onClick={handleClose}>Logout</MenuItem>
 				</Menu>
-				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+				<Button
+					aria-controls="simple-menu"
+					aria-haspopup="true"
+					onClick={handleClick}
+				>
 					Categories
 				</Button>
 				<Menu
@@ -63,8 +68,16 @@ export default function Header() {
 					<MenuItem onClick={handleClose}>My account</MenuItem>
 					<MenuItem onClick={handleClose}>Logout</MenuItem>
 				</Menu>
+				{logged ? (
+					<Button color="primary" onClick={logout}>
+						Sign Out
+					</Button>
+				) : (
+					<Button color="primary" onClick={handleOpenModal}>
+						Sign In
+					</Button>
+				)}
 
-				<Button color="primary" onClick={handleOpenModal} >Sign In</Button>
 				<Button color="primary">Get Started</Button>
 			</div>
 			<AnimatedModal open={open} onClose={handleCloseModal} />

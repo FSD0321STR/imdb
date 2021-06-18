@@ -1,11 +1,10 @@
-
-export async function register({email, password, e}){
+export async function loginCheck({ email, password }) {
     console.log(email)
     console.log(password)
     // Here we fetch against API
 
     //FAIL CASE
-    if(email ===''){
+    if (email === '') {
         alert("Error")
         return {
             message: 'Email is not valid, please try again',
@@ -14,8 +13,8 @@ export async function register({email, password, e}){
     }
     //CORRECT CASE
     alert("Correct")
-    return {        
-        message: 'Register Completed',
-        status: 201
+    return {
+        message: 'Login Completed',
+        status: 200
     }
 }

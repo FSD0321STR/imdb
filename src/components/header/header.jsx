@@ -1,21 +1,15 @@
 import React, { useState } from "react";
+import useAuth from "../../hooks/useAuth";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import { Box, Icon } from "@material-ui/core";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
-import Register from "../register/register";
-import Collapse from "@material-ui/core/Collapse";
-import { Box } from '@material-ui/core';
-import { Link } from "react-router-dom";
-import useAuth from '../../hooks/useAuth';
+import AnimatedModal from "../login-modal/loginModal";
 
 export default function Header() {
-	const [anchorEl, setAnchorEl] = React.useState(null);
+	const [anchorEl, setAnchorEl] = useState(null);
 	const [open, setOpen] = useState(false);
-
-	const handleRegisterCollapse = (event) => {
-		setOpen((prev) => !prev);
-	};
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
@@ -24,58 +18,69 @@ export default function Header() {
 		setAnchorEl(null);
 	};
 
+	const handleOpenModal = () => {
+		setOpen(true);
+	};
+	const handleCloseModal = () => {
+		setOpen(false);
+	};
+
+	const { logged, logout } = useAuth();
+
 	return (
-		<div>
-			<Box display="flex" justifyContent="space-between" padding="20px">
-				<AccountBalanceIcon />
+		<Box display="flex" justifyContent="space-between" padding="20px">
+			<AccountBalanceIcon />
 
-				<div>
-					<Button
-						aria-controls="simple-menu"
-						aria-haspopup="true"
-						onClick={handleClick}
-					>
-						Trend
+			<div>
+				<Button
+					aria-controls="simple-menu"
+					aria-haspopup="true"
+					onClick={handleClick}
+				>
+					Trend
+				</Button>
+				<Menu
+					id="simple-menu"
+					anchorEl={anchorEl}
+					keepMounted
+					open={Boolean(anchorEl)}
+					onClose={handleClose}
+				>
+					<MenuItem onClick={handleClose}>Profile</MenuItem>
+					<MenuItem onClick={handleClose}>My account</MenuItem>
+					<MenuItem onClick={handleClose}>Logout</MenuItem>
+				</Menu>
+				<Button
+					aria-controls="simple-menu"
+					aria-haspopup="true"
+					onClick={handleClick}
+				>
+					Categories
+				</Button>
+				<Menu
+					id="simple-menu"
+					anchorEl={anchorEl}
+					keepMounted
+					open={Boolean(anchorEl)}
+					onClose={handleClose}
+				>
+					<MenuItem onClick={handleClose}>Profile</MenuItem>
+					<MenuItem onClick={handleClose}>My account</MenuItem>
+					<MenuItem onClick={handleClose}>Logout</MenuItem>
+				</Menu>
+				{logged ? (
+					<Button color="primary" onClick={logout}>
+						Sign Out
 					</Button>
-					<Menu
-						id="simple-menu"
-						anchorEl={anchorEl}
-						keepMounted
-						open={Boolean(anchorEl)}
-						onClose={handleClose}
-					>
-						<MenuItem onClick={handleClose}>Profile</MenuItem>
-						<MenuItem onClick={handleClose}>My account</MenuItem>
-						<MenuItem onClick={handleClose}>Logout</MenuItem>
-					</Menu>
-					<Button
-						aria-controls="simple-menu"
-						aria-haspopup="true"
-						onClick={handleClick}
-					>
-						Categories
+				) : (
+					<Button color="primary" onClick={handleOpenModal}>
+						Sign In
 					</Button>
-					<Menu
-						id="simple-menu"
-						anchorEl={anchorEl}
-						keepMounted
-						open={Boolean(anchorEl)}
-						onClose={handleClose}
-					>
-						<MenuItem onClick={handleClose}>Profile</MenuItem>
-						<MenuItem onClick={handleClose}>My account</MenuItem>
-						<MenuItem onClick={handleClose}>Logout</MenuItem>
-					</Menu>
+				)}
 
-					<Button color="primary">Sign In</Button>
-					<Button color="primary" onClick={handleRegisterCollapse}>
-						Get Started
-					</Button>
-				</div>
-			</Box>
-			<Collapse in={open}>
-				<Register />
-			</Collapse>
-		</div>
+				<Button color="primary">Get Started</Button>
+			</div>
+			<AnimatedModal open={open} onClose={handleCloseModal} />
+		</Box>
 	);
 }

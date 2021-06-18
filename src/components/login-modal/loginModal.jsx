@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { loginCheck } from "../../utils/auth-api";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
@@ -11,11 +12,7 @@ import Fade from "@material-ui/core/Fade";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-async function handleSubmit(e) {
-	e.preventDefault();
-	let reg = await register({ email, password });
-	console.log(reg);
-}
+
 const useStyles = makeStyles((theme) => ({
 	modal: {
 		display: "flex",
@@ -35,14 +32,15 @@ export default function AnimatedModal({ open, onClose }) {
 
 	const { login } = useAuth();
 	const [email, setEmail] = useState("");
-	const [pass, setPass] = useState("");
+	const [password, setPassword] = useState("");
 
 	let history = useHistory();
 
 	async function handleSubmit(e) {
 		e.preventDefault();
-		let reg = await login({ email, password });
-		console.log(reg);
+		login({ email, password });
+		let log = await loginCheck({ email, password });
+		console.log(log);
 		history.push("/");
 	}
 
@@ -51,7 +49,7 @@ export default function AnimatedModal({ open, onClose }) {
 	}
 
 	function handleInputPass(e) {
-		setPass(e.target.value);
+		setPassword(e.target.value);
 	}
 
 	return (

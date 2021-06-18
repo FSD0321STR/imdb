@@ -14,7 +14,7 @@ export async function loginCheck({ email, password }) {
     //CORRECT CASE
     alert("Correct")
     return {
-        message: 'Register Completed',
-        status: 201
+        message: 'Login Completed',
+        status: 200
     }
 }

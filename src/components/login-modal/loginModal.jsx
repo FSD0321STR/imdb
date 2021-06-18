@@ -38,9 +38,7 @@ export default function AnimatedModal({ open, onClose }) {
 
 	async function handleSubmit(e) {
 		e.preventDefault();
-		login({ email, password });
-		let log = await loginCheck({ email, password });
-		console.log(log);
+		await login({ email, password });
 		history.push("/");
 	}
 

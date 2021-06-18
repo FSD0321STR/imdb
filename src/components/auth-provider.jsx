@@ -1,32 +1,30 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState } from "react";
+import { loginCheck } from "../utils/auth-api";
 
 export const AuthContext = createContext(null);
 
+function AuthProvider({ children }) {
+	const [email, setEmail] = useState("");
+	const [logged, setLogged] = useState(false);
 
+	const login = async ({ email, password }) => {
+		const log = await loginCheck({ email, password });
+		if (log.status === 200) {
+			setEmail(email);
+			setLogged(true);
+		}
+	};
 
-function AuthProvider({children}){
+	const logout = () => {
+		setEmail("");
+		setLogged(false);
+	};
 
-    const [email, setEmail]= useState("");
-    const [logged, setLogged] = useState(false);
-
-
-    const login = ({email,password}) => {
-        setEmail(email);
-        setLogged(true);
-    }
-
-    const logout = () => {
-        setEmail('');
-        setLogged(false);
-    }
-
-
-
-    return (
-        <AuthContext.Provider value={{email, login, logout, logged}}>
-            {children}
-        </AuthContext.Provider>
-    )
+	return (
+		<AuthContext.Provider value={{ email, login, logout, logged }}>
+			{children}
+		</AuthContext.Provider>
+	);
 }
 
-export default AuthProvider
+export default AuthProvider;

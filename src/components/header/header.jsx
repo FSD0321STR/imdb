@@ -79,6 +79,7 @@ export default function Header() {
 				)}
 
 				<Button color="primary">Get Started</Button>
+				<Button color="primary">Profile</Button>
 			</div>
 			<AnimatedModal open={open} onClose={handleCloseModal} />
 		</Box>

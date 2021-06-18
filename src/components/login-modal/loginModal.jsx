@@ -11,7 +11,11 @@ import Fade from "@material-ui/core/Fade";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-
+async function handleSubmit(e) {
+	e.preventDefault();
+	let reg = await register({ email, password });
+	console.log(reg);
+}
 const useStyles = makeStyles((theme) => ({
 	modal: {
 		display: "flex",
@@ -35,9 +39,10 @@ export default function AnimatedModal({ open, onClose }) {
 
 	let history = useHistory();
 
-	function handleSubmit(e) {
+	async function handleSubmit(e) {
 		e.preventDefault();
-		login({ email, pass });
+		let reg = await login({ email, password });
+		console.log(reg);
 		history.push("/");
 	}
 

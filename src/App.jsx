@@ -4,12 +4,9 @@ import AuthProvider from "./components/auth-provider";
 import Private from "./components/private-route";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
-import Category from "./components/categories/category" 
 import Tema from "./components/tema/tema";
 import Home from "./components/pages/home";
 import About from "./components/pages/about";
-import Categories from "./components/pages/categories";
-import Trends from "./components/pages/trends";
 import Contact from "./components/pages/contact";
 import Profile from "./components/pages/profile";
 import PrivacyPolicy from "./components/pages/privacyPolicy";
@@ -48,13 +45,9 @@ function App() {
 						<Contact />
 					</Route>
 
-					<Route exact path="/trends">
-						<Trends />
-					</Route>
+					
 
-					<Route exact path="/categories">
-						<Categories />
-					</Route>
+					
 
 					<Route exact path="/about">
 						<About />
@@ -69,7 +62,7 @@ function App() {
 					</Route>
 
 				</Switch>
-					<Category /> 
+					
 					<Tema/>
 					
 				<Footer /> 

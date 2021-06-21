@@ -78,11 +78,41 @@ export default function Topic() {
     const [categoryName] = React.useState([]);
     const theme = useTheme();
 
+   
+
+    let value = "bitch", error_msg = "error"
+    let comments = []
+    let blackList = ["mother fucker", "bitch"]
+    const topicPost = () => {
+        if (goodTopic(value)) save(value)
+        else alert(error_msg)
+    }
+    const goodTopic = (post) => {
+        let res = post.split(" ");
+        console.log(res);
+        console.log(blackList);
+
+        for (let i = 0; i < res.length; i++)
+            for (let j = 0; j < blackList.length; j++)
+                if (res[i].toLowerCase() === blackList[j].toLowerCase()) return false
+
+        return true
+    }
+
+    const save = (post) => {
+        comments.push(post)
+        alert("Topic Saved")
+
+    }
+
     const handleChange = (event) => {
         setPersonName(event.target.value);
     };
 
-    const SaveTopic = 
+    const handleChangePost = (event) => {
+        value = event.target.value
+
+    };
 
     return (
         <div className={classes.root}>
@@ -137,9 +167,10 @@ export default function Topic() {
                     aria-label="maximum height"
                     placeholder="Maximum 4 rows"
                     defaultValue=""
+                    onChange={handleChangePost}
                 />
 
-                <Button variant="contained" color="primary" onClick={SaveTopic}>
+                <Button variant="contained" color="primary" onClick={topicPost}>
                     Save
                 </Button>
             </div>

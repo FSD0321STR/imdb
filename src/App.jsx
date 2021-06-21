@@ -73,6 +73,10 @@ function App() {
 						<Profile />
 					</Private>
 
+					<Route exact path="/create-topic">
+						<Topic />
+					</Route>
+
 					<Route path="/">
 						<Home />
 					</Route>

@@ -52,7 +52,7 @@ export default function Header() {
 					<MenuItem onClick={handleClose}>Sign out</MenuItem>
 				</Menu>
 				<Button
-					aria-controls="simple-menu"
+					aria-controls="simple-me1nu"
 					aria-haspopup="true"
 					onClick={handleClick}
 				>

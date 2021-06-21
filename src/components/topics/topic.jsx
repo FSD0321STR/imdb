@@ -82,6 +82,8 @@ export default function Topic() {
         setPersonName(event.target.value);
     };
 
+    const SaveTopic = 
+
     return (
         <div className={classes.root}>
             <div>
@@ -137,7 +139,7 @@ export default function Topic() {
                     defaultValue=""
                 />
 
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="primary" onClick={SaveTopic}>
                     Save
                 </Button>
             </div>

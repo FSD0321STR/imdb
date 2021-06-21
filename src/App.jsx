@@ -1,4 +1,4 @@
-/* import React from "react";
+import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import AuthProvider from "./components/auth-provider";
 import Private from "./components/private-route";
@@ -7,7 +7,7 @@ import Footer from "./components/footer/footer";
 import Topic from "./components/topics/topic";
 import TopicView from "./components/topics/topicView";
 
-function App() {
+/*function App() {
 	return (
 		<div>
 			<Header />

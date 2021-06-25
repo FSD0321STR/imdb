@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -48,6 +49,8 @@ export default function RegisterSide() {
 	const [password, setPassword] = useState("");
 	const [fname, setFname] = useState("");
 	const [lname, setLname] = useState("");
+
+	const history = useHistory();
 
 	async function handleSubmit(e) {
 		e.preventDefault();

@@ -24,10 +24,12 @@ export async function login({ email, password }) {
 
 }
 
-export async function register({ email, password }) {
+export async function register({ email, password, fname, lname }) {
+    console.log(fname)
+    console.log(lname)
     console.log(email)
     console.log(password)
-    const { data } = await api.post("/register", { email, password });
+    const { data } = await api.post("/register", { email, password, fname, lname });
 
     return data;
 }

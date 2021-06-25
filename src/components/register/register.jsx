@@ -46,11 +46,21 @@ const useStyles = makeStyles((theme) => ({
 export default function RegisterSide() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [fname, setFname] = useState("");
+	const [lname, setLname] = useState("");
 
 	async function handleSubmit(e) {
 		e.preventDefault();
-		let reg = await register({ email, password });
+		let reg = await register({ email, password, fname, lname });
 		console.log(reg);
+	}
+
+	function handleFnameInput(e) {
+		setFname(e.target.value);
+	}
+
+	function handleLnameInput(e) {
+		setLname(e.target.value);
 	}
 
 	function handleEmailInput(e) {
@@ -74,7 +84,7 @@ export default function RegisterSide() {
 					<Typography component="h1" variant="h5">
 						Get Started
 					</Typography>
-					<form className={classes.form} noValidate onSubmit={handleSubmit} >
+					<form className={classes.form} noValidate onSubmit={handleSubmit}>
 						<Grid container spacing={2}>
 							<Grid item xs={12} sm={6}>
 								<TextField
@@ -85,7 +95,9 @@ export default function RegisterSide() {
 									fullWidth
 									id="firstName"
 									label="First Name"
-									autoFocus
+									autoComplete="fname"
+									onChange={handleFnameInput}
+									value={fname}
 								/>
 							</Grid>
 							<Grid item xs={12} sm={6}>
@@ -97,6 +109,8 @@ export default function RegisterSide() {
 									label="Last Name"
 									name="lastName"
 									autoComplete="lname"
+									onChange={handleLnameInput}
+									value={lname}
 								/>
 							</Grid>
 							<Grid item xs={12}>
@@ -128,7 +142,9 @@ export default function RegisterSide() {
 							</Grid>
 							<Grid item xs={12}>
 								<FormControlLabel
-									control={<Checkbox value="allowExtraEmails" color="primary" />}
+									control={
+										<Checkbox value="allowExtraEmails" color="primary" />
+									}
 									label="I want to receive inspiration, marketing promotions and updates via email."
 								/>
 							</Grid>

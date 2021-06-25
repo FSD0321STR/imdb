@@ -49,8 +49,16 @@ export default function RegisterSide() {
 
 	async function handleSubmit(e) {
 		e.preventDefault();
-		let reg = await register({ email, password });
-		console.log(reg);
+		if (email === "") {
+			alert("Email is not valid, please try again");
+		} else {
+			const user = await register({ email, password });
+			if (user) {
+				history.push("/");
+			} else {
+				alert("Submit failed, please try again");
+			}
+		}
 	}
 
 	function handleEmailInput(e) {
@@ -74,7 +82,7 @@ export default function RegisterSide() {
 					<Typography component="h1" variant="h5">
 						Get Started
 					</Typography>
-					<form className={classes.form} noValidate onSubmit={handleSubmit} >
+					<form className={classes.form} noValidate onSubmit={handleSubmit}>
 						<Grid container spacing={2}>
 							<Grid item xs={12} sm={6}>
 								<TextField
@@ -128,7 +136,9 @@ export default function RegisterSide() {
 							</Grid>
 							<Grid item xs={12}>
 								<FormControlLabel
-									control={<Checkbox value="allowExtraEmails" color="primary" />}
+									control={
+										<Checkbox value="allowExtraEmails" color="primary" />
+									}
 									label="I want to receive inspiration, marketing promotions and updates via email."
 								/>
 							</Grid>

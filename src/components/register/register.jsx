@@ -51,8 +51,16 @@ export default function RegisterSide() {
 
 	async function handleSubmit(e) {
 		e.preventDefault();
-		let reg = await register({ email, password, fname, lname });
-		console.log(reg);
+		if (email === "" || password === "" || fname === "" || lname === "") {
+			alert("All fields are required, please fill all the fields");
+		} else {
+			const user = await register({ email, password, fname, lname });
+			if (user) {
+				history.push("/");
+			} else {
+				alert("Submit failed, please try again");
+			}
+		}
 	}
 
 	function handleFnameInput(e) {

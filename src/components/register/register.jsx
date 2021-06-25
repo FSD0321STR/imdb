@@ -51,8 +51,8 @@ export default function RegisterSide() {
 
 	async function handleSubmit(e) {
 		e.preventDefault();
-		if (email === "") {
-			alert("Email is not valid, please try again");
+		if (email === "" || password === "" || fname === "" || lname === "") {
+			alert("All fields are required, please fill all fields");
 		} else {
 			const user = await register({ email, password, fname, lname });
 			if (user) {

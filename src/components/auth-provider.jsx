@@ -8,7 +8,7 @@ function AuthProvider({ children }) {
 	const [logged, setLogged] = useState(false);
 
 	const login = async ({ email, password }) => {
-		const log = await loginCheck({ email, password });
+		const log = await login({ email, password });
 		if (log.status === 200) {
 			setEmail(email);
 			setLogged(true);

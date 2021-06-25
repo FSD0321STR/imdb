@@ -1,41 +1,33 @@
-export async function loginCheck({ email, password }) {
+import axios from 'axios';
+const api = axios.create({
+    baseURL: import.meta.env.VITE_API_URL,
+    headers: {
+        "Content-Type": 'application/json'
+    }
+})
+
+api.interceptors.request.use(config => {
+    let token = "";
+    if (token) {
+        config.headers.authorization = `Bearer ${token}`;
+    }
+    return config;
+})
+
+export async function login({ email, password }) {
     console.log(email)
     console.log(password)
-    // Here we fetch against API
 
-    //FAIL CASE
-    if (email === '') {
-        alert("Error")
-        return {
-            message: 'Email is not valid, please try again',
-            status: 404
-        }
-    }
-    //CORRECT CASE
-    alert("Correct")
-    return {
-        message: 'Login Completed',
-        status: 200
-    }
+    const { data } = await api.post("/login", { email, password });
+
+    return data;
+
 }
 
 export async function register({ email, password }) {
     console.log(email)
     console.log(password)
-    // Here we fetch against API
+    const { data } = await api.post("/register", { email, password });
 
-    //FAIL CASE
-    if (email === '') {
-        alert("Error")
-        return {
-            message: 'Email is not valid, please try again',
-            status: 404
-        }
-    }
-    //CORRECT CASE
-    alert("Correct")
-    return {
-        message: 'Login Completed',
-        status: 200
-    }
+    return data;
 }

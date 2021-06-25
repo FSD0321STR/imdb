@@ -37,8 +37,16 @@ export default function AnimatedModal({ open, onClose }) {
 
 	async function handleSubmit(e) {
 		e.preventDefault();
-		await login({ email, password });
-		history.push("/");
+		if (email === "") {
+			alert("Email is not valid, please try again");
+		} else {
+			const user = await login({ email, password });
+			if (user) {
+				history.push("/");
+			} else {
+				alert("Submit failed, please try again");
+			}
+		}
 	}
 
 	function handleInputEmail(e) {

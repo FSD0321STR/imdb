@@ -4,6 +4,17 @@ import AuthProvider from "./components/auth-provider";
 import Private from "./components/private-route";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
+import Topic from "./components/topics/topic";
+import TopicView from "./components/topics/topicView";
+
+/*function App() {
+	return (
+		<div>
+			<Header />
+			<TopicView title='Esto es una Prueba' posts='Prueba prueba prueba pruebna' />
+			<Topic />
+			<Footer />
+		</div> */
 import Home from "./components/pages/home";
 import About from "./components/pages/about";
 import Categories from "./components/pages/categories";
@@ -61,6 +72,10 @@ function App() {
 					<Private exact path="/profile">
 						<Profile />
 					</Private>
+
+					<Route exact path="/create-topic">
+						<Topic />
+					</Route>
 
 					<Route path="/">
 						<Home />

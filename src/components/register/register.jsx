@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -49,10 +50,12 @@ export default function RegisterSide() {
 	const [fname, setFname] = useState("");
 	const [lname, setLname] = useState("");
 
+	const history = useHistory();
+
 	async function handleSubmit(e) {
 		e.preventDefault();
 		if (email === "" || password === "" || fname === "" || lname === "") {
-			alert("All fields are required, please fill all fields");
+			alert("All fields are required, please fill all the fields");
 		} else {
 			const user = await register({ email, password, fname, lname });
 			if (user) {

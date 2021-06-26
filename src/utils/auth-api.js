@@ -17,9 +17,7 @@ api.interceptors.request.use(config => {
 export async function login({ email, password }) {
     console.log(email)
     console.log(password)
-
     return await api.post("/login", { email, password });
-
 }
 
 export async function register({ email, password, fname, lname }) {

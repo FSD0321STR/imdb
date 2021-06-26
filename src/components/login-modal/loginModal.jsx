@@ -38,13 +38,13 @@ export default function AnimatedModal({ open, onClose }) {
 	async function handleSubmit(e) {
 		e.preventDefault();
 		if (email === "") {
-			alert("Email is not valid, please try again");
+			alert("Email cannot be empty :)");
 		} else {
 			const user = await login({ email, password });
 			if (user) {
 				history.push("/");
 			} else {
-				alert("Submit failed, please try again");
+				alert("Something went wrong, please try again");
 			}
 		}
 	}

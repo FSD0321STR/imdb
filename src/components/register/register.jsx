@@ -65,15 +65,12 @@ export default function RegisterSide() {
 			}
 		}
 	}
-
 	function handleFnameInput(e) {
 		setFname(e.target.value);
 	}
-
 	function handleLnameInput(e) {
 		setLname(e.target.value);
 	}
-
 	function handleEmailInput(e) {
 		setEmail(e.target.value);
 	}

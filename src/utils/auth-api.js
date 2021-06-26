@@ -7,7 +7,7 @@ const api = axios.create({
 })
 
 api.interceptors.request.use(config => {
-    let token = "";
+    let token = localStorage.getItem("token") || "";
     if (token) {
         config.headers.authorization = `Bearer ${token}`;
     }
@@ -17,11 +17,7 @@ api.interceptors.request.use(config => {
 export async function login({ email, password }) {
     console.log(email)
     console.log(password)
-
-    const { data } = await api.post("/login", { email, password });
-
-    return data;
-
+    return await api.post("/login", { email, password });
 }
 
 export async function register({ email, password, fname, lname }) {

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -46,19 +47,31 @@ const useStyles = makeStyles((theme) => ({
 export default function RegisterSide() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [fname, setFname] = useState("");
+	const [lname, setLname] = useState("");
+
+	const history = useHistory();
 
 	async function handleSubmit(e) {
 		e.preventDefault();
-		if (email === "") {
-			alert("Email is not valid, please try again");
+		if (email === "" || password === "" || fname === "" || lname === "") {
+			alert("All fields are required, please fill all the fields");
 		} else {
-			const user = await register({ email, password });
+			const user = await register({ email, password, fname, lname });
 			if (user) {
 				history.push("/");
 			} else {
 				alert("Submit failed, please try again");
 			}
 		}
+	}
+
+	function handleFnameInput(e) {
+		setFname(e.target.value);
+	}
+
+	function handleLnameInput(e) {
+		setLname(e.target.value);
 	}
 
 	function handleEmailInput(e) {
@@ -93,7 +106,9 @@ export default function RegisterSide() {
 									fullWidth
 									id="firstName"
 									label="First Name"
-									autoFocus
+									autoComplete="fname"
+									onChange={handleFnameInput}
+									value={fname}
 								/>
 							</Grid>
 							<Grid item xs={12} sm={6}>
@@ -105,6 +120,8 @@ export default function RegisterSide() {
 									label="Last Name"
 									name="lastName"
 									autoComplete="lname"
+									onChange={handleLnameInput}
+									value={lname}
 								/>
 							</Grid>
 							<Grid item xs={12}>

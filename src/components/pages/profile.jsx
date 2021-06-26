@@ -1,17 +1,12 @@
-
 import React, { useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
+import Grid from "@material-ui/core/Grid";
+import Container from "@material-ui/core/Container";
+import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
-import Link from "@material-ui/core/Link";
-import { makeStyles } from '@material-ui/core/styles';
-
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -19,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	paper: {
 		padding: theme.spacing(2),
-		textAlign: 'center',
+		textAlign: "center",
 		color: theme.palette.text.secondary,
 	},
 }));
@@ -30,20 +25,17 @@ export default function Profile() {
 	const { email } = useAuth();
 
 	return (
-
-
 		<Container maxWidth="lg">
 			<Typography component="h1">Profile</Typography>
 
 			<Grid container spacing={3}>
-
 				<Grid item xs={12} sm={6}>
 					<Paper className={classes.paper}>
 						<Typography component="h1">Formulario</Typography>
 						<br />
 						<br />
 
-						<form className={classes.form} noValidate  >
+						<form className={classes.form} noValidate>
 							<Grid container spacing={2}>
 								<Grid item xs={12} sm={6}>
 									<TextField
@@ -104,7 +96,6 @@ export default function Profile() {
 							</Button>
 						</form>
 					</Paper>
-
 				</Grid>
 				<Grid item xs={12} sm={6}>
 					<Paper className={classes.paper}>
@@ -113,9 +104,7 @@ export default function Profile() {
 						</Typography>
 					</Paper>
 				</Grid>
-
 			</Grid>
 		</Container>
-
 	);
 }

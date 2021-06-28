@@ -100,7 +100,7 @@ export default function Profile() {
 				<Grid item xs={12} sm={6}>
 					<Paper className={classes.paper}>
 						<Typography component="h2">
-							User <strong>{user.fname}</strong> is logged in
+							Welcome to your dashboard <strong>{user.fname}</strong>.
 						</Typography>
 					</Paper>
 				</Grid>

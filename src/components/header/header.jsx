@@ -9,7 +9,6 @@ import AnimatedModal from "../login-modal/loginModal";
 import { Link } from "react-router-dom";
 import Collapse from "@material-ui/core/Collapse";
 import RegisterSide from "../register/register";
-import register from "../../utils/auth-api";
 
 export default function Header() {
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -102,10 +101,15 @@ export default function Header() {
 					<AnimatedModal open={open} onClose={handleCloseModal} />
 				</div>
 			</Box>
-
-			<Collapse in={openReg}>
-				<RegisterSide />
-			</Collapse>
+			{logged ? (
+				<Collapse in={openReg}>
+					<RegisterSide />
+				</Collapse>
+			) : (
+				<Collapse in={openReg}>
+					<RegisterSide />
+				</Collapse>
+			)}
 		</div>
 	);
 }

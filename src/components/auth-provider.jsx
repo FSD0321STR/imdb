@@ -1,6 +1,7 @@
-import React, { useReducer, useState } from "react";
-import { AuthContext } from "../contexts/auth-context";
+import React, { useReducer, createContext } from "react";
 import api from "../utils/auth-api";
+
+export const AuthContext = createContext(null);
 
 const token = localStorage.getItem("token");
 
@@ -32,11 +33,12 @@ function AuthProvider({ children }) {
 	const [state, dispatch] = useReducer(reducer, initialState);
 
 	const register = async ({ email, password, fname, lname }) => {
-		await api
+		return await api
 			.register({ email, password, fname, lname })
 			.then((token) => {
 				dispatch({ type: "register", token: token.token });
 				localStorage.setItem("token", token.token);
+				return token.token;
 			})
 			.catch((e) => {
 				dispatch({ type: "logout" });
@@ -45,11 +47,12 @@ function AuthProvider({ children }) {
 	};
 
 	const login = async ({ email, password }) => {
-		await api
+		return await api
 			.login({ email, password })
 			.then((token) => {
 				dispatch({ type: "login", token: token.token });
 				localStorage.setItem("token", token.token);
+				return token.token;
 			})
 			.catch((e) => {
 				dispatch({ type: "logout" });

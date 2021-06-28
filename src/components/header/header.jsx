@@ -88,9 +88,14 @@ export default function Header() {
 						</Button>
 					)}
 
-					<Button color="primary" onClick={handleRegisterCollapse}>
-						Get Started
-					</Button>
+					{logged ? (
+						""
+					) : (
+						<Button color="primary" onClick={handleRegisterCollapse}>
+							Get Started
+						</Button>
+					)}
+
 					<Link to="/profile" color="primary">
 						Profile
 					</Link>

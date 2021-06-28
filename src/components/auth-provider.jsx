@@ -31,9 +31,9 @@ const reducer = (state, action) => {
 function AuthProvider({ children }) {
 	const [state, dispatch] = useReducer(reducer, initialState);
 
-	const register = async ({ email, password }) => {
+	const register = async ({ email, password, fname, lname }) => {
 		await api
-			.register({ email, password })
+			.register({ email, password, fname, lname })
 			.then((token) => {
 				dispatch({ type: "register", token: token.token });
 				localStorage.setItem("token", token.token);

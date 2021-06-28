@@ -1,6 +1,6 @@
 import axios from 'axios';
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
+    baseURL: "http://localhost:8000/",
 })
 
 
@@ -12,7 +12,7 @@ api.interceptors.request.use(config => {
     return config;
 })
 
-const API_URL = meta.env.VITE_API_URL;
+const API_URL = 'http://localhost:8000';
 
 /*
 export async function login({ email, password }) {
@@ -43,14 +43,14 @@ export async function register({ email, password, fname, lname }) {
 }
 */
 
-const register = ({ email, password }) => {
+const register = ({ email, password, fname, lname }) => {
     return fetch(`${API_URL}/register`, {
         method: 'POST',
         mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password, fname, lname })
     }).then(res => res = res.json())
         .catch(error => console.error('Error:', error))
 }

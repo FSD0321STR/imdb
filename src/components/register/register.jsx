@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import useAuth from "../../hooks/use-auth";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,7 +13,6 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import { register } from "../../utils/auth-api";
 
 const useStyles = makeStyles((theme) => ({
 	image: {
@@ -45,12 +45,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function RegisterSide() {
+	const { register } = useAuth();
+	const history = useHistory();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [fname, setFname] = useState("");
 	const [lname, setLname] = useState("");
-
-	const history = useHistory();
 
 	async function handleSubmit(e) {
 		e.preventDefault();

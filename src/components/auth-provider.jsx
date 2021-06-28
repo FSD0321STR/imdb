@@ -1,32 +1,69 @@
-import React, { createContext, useState } from "react";
-import { login as userLogin } from "../utils/auth-api";
+import React, { useReducer, useState } from "react";
+import { AuthContext } from "../contexts/auth-context";
+import api from "../utils/auth-api";
 
-export const AuthContext = createContext(null);
+const token = localStorage.getItem("token");
+
+const initialState = {
+	logged: token !== null,
+};
+
+const reducer = (state, action) => {
+	switch (action.type) {
+		case "login":
+			return {
+				...state,
+				logged: true,
+			};
+		case "logout":
+			return {
+				...state,
+				logged: false,
+			};
+		case "register":
+			return {
+				...state,
+				logged: true,
+			};
+	}
+};
 
 function AuthProvider({ children }) {
-	const [userId, setUserId] = useState("");
-	const [email, setEmail] = useState("");
-	const [logged, setLogged] = useState(false);
+	const [state, dispatch] = useReducer(reducer, initialState);
+
+	const register = async ({ email, password }) => {
+		await api
+			.register({ email, password })
+			.then((token) => {
+				dispatch({ type: "register", token: token.token });
+				localStorage.setItem("token", token.token);
+			})
+			.catch((e) => {
+				dispatch({ type: "logout" });
+				Promise.reject(e);
+			});
+	};
 
 	const login = async ({ email, password }) => {
-		const log = await userLogin({ email, password });
-		if (log.status === 200) {
-			setUserId(log.data.user.id);
-			setEmail(email);
-			setLogged(true);
-			localStorage.setItem("token", log.data.token);
-			return true;
-		}
+		await api
+			.login({ email, password })
+			.then((token) => {
+				dispatch({ type: "login", token: token.token });
+				localStorage.setItem("token", token.token);
+			})
+			.catch((e) => {
+				dispatch({ type: "logout" });
+				Promise.reject(e);
+			});
 	};
 
 	const logout = () => {
-		setUserId("");
-		setEmail("");
-		setLogged(false);
+		dispatch({ type: "logout" });
+		localStorage.removeItem("token");
 	};
 
 	return (
-		<AuthContext.Provider value={{ email, userId, login, logout, logged }}>
+		<AuthContext.Provider value={{ ...state, token, login, logout, register }}>
 			{children}
 		</AuthContext.Provider>
 	);

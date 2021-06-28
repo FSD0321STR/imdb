@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useAuth from "../../hooks/useAuth";
+import useAuth from "../../hooks/use-auth";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";

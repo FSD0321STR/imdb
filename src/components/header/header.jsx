@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import useAuth from "../../hooks/use-auth";
+import { Link } from "react-router-dom";
+
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { Box, Icon } from "@material-ui/core";
-import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
+import HomeIcon from "@material-ui/icons/Home";
 import AnimatedModal from "../login-modal/loginModal";
-import { Link } from "react-router-dom";
 import Collapse from "@material-ui/core/Collapse";
 import RegisterSide from "../register/register";
 
@@ -38,7 +39,9 @@ export default function Header() {
 	return (
 		<div>
 			<Box display="flex" justifyContent="space-between" padding="20px">
-				<AccountBalanceIcon />
+				<Link to="/" color="primary">
+					<HomeIcon />
+				</Link>
 
 				<div>
 					<Button

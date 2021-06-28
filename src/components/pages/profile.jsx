@@ -22,8 +22,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Profile() {
 	const classes = useStyles();
 
-	console.log(useAuth());
-	const { user } = useAuth();
+	const user = JSON.parse(localStorage.getItem("user"));
 
 	return (
 		<Container maxWidth="lg">
@@ -101,7 +100,7 @@ export default function Profile() {
 				<Grid item xs={12} sm={6}>
 					<Paper className={classes.paper}>
 						<Typography component="h2">
-							User <strong>{user}</strong> is logged in
+							User <strong>{user.fname}</strong> is logged in
 						</Typography>
 					</Paper>
 				</Grid>

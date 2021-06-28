@@ -4,6 +4,7 @@ import api from "../utils/auth-api";
 export const AuthContext = createContext(null);
 
 const token = localStorage.getItem("token");
+const user = JSON.parse(localStorage.getItem("user"));
 
 const initialState = {
 	logged: token !== null,
@@ -50,8 +51,9 @@ function AuthProvider({ children }) {
 		return await api
 			.login({ email, password })
 			.then((token) => {
-				dispatch({ type: "login", token: token.token });
+				dispatch({ type: "login", token: token });
 				localStorage.setItem("token", token.token);
+				localStorage.setItem("user", JSON.stringify(token.user));
 				return token.token;
 			})
 			.catch((e) => {
@@ -63,10 +65,13 @@ function AuthProvider({ children }) {
 	const logout = () => {
 		dispatch({ type: "logout" });
 		localStorage.removeItem("token");
+		localStorage.removeItem("user");
 	};
 
 	return (
-		<AuthContext.Provider value={{ ...state, token, login, logout, register }}>
+		<AuthContext.Provider
+			value={{ ...state, token, user, login, logout, register }}
+		>
 			{children}
 		</AuthContext.Provider>
 	);

@@ -43,6 +43,7 @@ export default function AnimatedModal({ open, onClose }) {
 			const user = await login({ email, password });
 			if (user) {
 				history.push("/");
+				onClose(true);
 			} else {
 				alert("Something went wrong, please try again");
 			}

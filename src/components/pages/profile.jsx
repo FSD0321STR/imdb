@@ -22,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
 export default function Profile() {
 	const classes = useStyles();
 
-	const { email } = useAuth();
+	console.log(useAuth());
+	const { user } = useAuth();
 
 	return (
 		<Container maxWidth="lg">
@@ -100,7 +101,7 @@ export default function Profile() {
 				<Grid item xs={12} sm={6}>
 					<Paper className={classes.paper}>
 						<Typography component="h2">
-							User <strong>{email}</strong> is logged in
+							User <strong>{user}</strong> is logged in
 						</Typography>
 					</Paper>
 				</Grid>

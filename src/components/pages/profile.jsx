@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useAuth from "../../hooks/useAuth";
+import useAuth from "../../hooks/use-auth";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Profile() {
 	const classes = useStyles();
 
-	const { email } = useAuth();
+	const user = JSON.parse(localStorage.getItem("user"));
 
 	return (
 		<Container maxWidth="lg">
@@ -100,7 +100,7 @@ export default function Profile() {
 				<Grid item xs={12} sm={6}>
 					<Paper className={classes.paper}>
 						<Typography component="h2">
-							User <strong>{email}</strong> is logged in
+							User <strong>{user.fname}</strong> is logged in
 						</Typography>
 					</Paper>
 				</Grid>

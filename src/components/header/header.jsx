@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import useAuth from "../../hooks/useAuth";
+import useAuth from "../../hooks/use-auth";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
-import MenuItem from '@material-ui/core/MenuItem';
+import MenuItem from "@material-ui/core/MenuItem";
 import { Box, Icon } from "@material-ui/core";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import AnimatedModal from "../login-modal/loginModal";
 import { Link } from "react-router-dom";
 import Collapse from "@material-ui/core/Collapse";
 import RegisterSide from "../register/register";
-import { register } from "../../utils/auth-api";
 
 export default function Header() {
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -88,19 +87,29 @@ export default function Header() {
 						</Button>
 					)}
 
-					<Button color="primary" onClick={handleRegisterCollapse}>Get Started</Button>
+					{logged ? (
+						""
+					) : (
+						<Button color="primary" onClick={handleRegisterCollapse}>
+							Get Started
+						</Button>
+					)}
+
 					<Link to="/profile" color="primary">
 						Profile
 					</Link>
 					<AnimatedModal open={open} onClose={handleCloseModal} />
 				</div>
-			</Box >
-
-			<Collapse in={openReg}>
-				<RegisterSide />
-			</Collapse>
-
+			</Box>
+			{logged ? (
+				<Collapse in={openReg}>
+					<RegisterSide />
+				</Collapse>
+			) : (
+				<Collapse in={openReg}>
+					<RegisterSide />
+				</Collapse>
+			)}
 		</div>
 	);
-
 }

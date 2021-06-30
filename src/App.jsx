@@ -8,15 +8,8 @@ import Topic from "./components/topics/topic";
 import Search from "./components/search/search";
 import TopicView from "./components/topics/topicView";
 
-/*function App() {
-	return (
-		<div>
-			<Header />
-			<TopicView title='Esto es una Prueba' posts='Prueba prueba prueba pruebna' />
-			<Topic />
-			<Footer />
-		</div> */
 import Home from "./components/pages/home";
+import Trends from "./components/pages/trends";
 import About from "./components/pages/about";
 import Contact from "./components/pages/contact";
 import Profile from "./components/pages/profile";
@@ -58,6 +51,10 @@ function App() {
 
 					<Route exact path="/about">
 						<About />
+					</Route>
+
+					<Route exact path="/trends">
+						<Trends />
 					</Route>
 
 					<Route exact path="/create-topic">

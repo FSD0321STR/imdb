@@ -7,17 +7,17 @@ import CommentIcon from '@material-ui/icons/Comment';
 
 
 export default function Coment() {
-    let value = "bitch", error_msg = "error"
+    let value = "", error_msg = "Unable to post comment"
     let comments = []
-    let blackList = ["mother fucker", "bitch"]
+    let blackList = ["fucker", "bitch"]
     const comment = () => {
         if (goodComent(value)) save(value)
         else dialogMsg(error_msg)
     }
     const goodComent = (comm) => {
         let res = comm.split(" ");
-        console.log(res);
-        console.log(blackList);
+        //console.log(res);
+        //console.log(blackList);
 
         for (let i = 0; i < res.length; i++)
             for (let j = 0; j < blackList.length; j++)
@@ -27,6 +27,7 @@ export default function Coment() {
     }
     const save = (comm) => {
         comments.push(comm)
+        console.log(comments);
         dialogMsg("comment save")
 
     }
@@ -46,8 +47,8 @@ export default function Coment() {
 
 
             <textarea id="w3review" name="w3review" rows="4" cols="50" maxLength="255" onChange={handleChange} >
-                At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
-            </textarea> <br/>
+
+            </textarea> <br />
             <button onClick={comment}>
                 Comment
             </button>

@@ -5,6 +5,7 @@ import Private from "./components/private-route";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import Topic from "./components/topics/topic";
+import Search from "./components/search/search";
 import TopicView from "./components/topics/topicView";
 
 /*function App() {
@@ -69,7 +70,9 @@ function App() {
 					</Route>
 				</Switch>
 
-				<Tema />
+   
+          <Search />
+				  <Tema />
 
 				<Footer />
 			</AuthProvider>

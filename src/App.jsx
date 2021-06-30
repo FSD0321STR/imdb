@@ -33,6 +33,10 @@ function App() {
 				<Header />
 
 				<Switch>
+					<Private exact path="/profile">
+						<Profile />
+					</Private>
+
 					<Route exact path="/terms-of-use">
 						<TermsOfUse />
 					</Route>
@@ -57,10 +61,6 @@ function App() {
 						<About />
 					</Route>
 
-					<Private exact path="/profile">
-						<Profile />
-					</Private>
-
 					<Route exact path="/create-topic">
 						<Topic />
 					</Route>
@@ -70,10 +70,8 @@ function App() {
 					</Route>
 				</Switch>
 
-   
-          <Search />
-				  <Tema />
-
+				<Search />
+				<Tema />
 				<Footer />
 			</AuthProvider>
 		</BrowserRouter>

@@ -14,13 +14,6 @@ api.interceptors.request.use(config => {
 
 const API_URL = 'http://localhost:8000';
 
-/*
-export async function login({ email, password }) {
-    console.log(email)
-    console.log(password)
-    return await api.post("/login", { email, password });
-}
-*/
 
 const login = ({ email, password }) => {
     return fetch(`${API_URL}/login`, {
@@ -34,15 +27,6 @@ const login = ({ email, password }) => {
         .catch(error => console.error('Error:', error))
 }
 
-/*
-export async function register({ email, password, fname, lname }) {
-    console.log(`${fname} | ${lname}`)
-    console.log(`${email} | ${password}`)
-    const { data } = await api.post("/register", { email, password, fname, lname });
-    return data;
-}
-*/
-
 const register = ({ email, password, fname, lname }) => {
     return fetch(`${API_URL}/register`, {
         method: 'POST',
@@ -55,7 +39,20 @@ const register = ({ email, password, fname, lname }) => {
         .catch(error => console.error('Error:', error))
 }
 
+const userUpdate = ({ user }) => {
+    return fetch(`${API_URL}/user/` + user._id, {
+        method: 'PUT',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user)
+    }).then(res => res = res.json())
+        .catch(error => console.error('Error:', error))
+}
+
 export default {
     login,
     register,
+    userUpdate
 }

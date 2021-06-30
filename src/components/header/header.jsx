@@ -10,9 +10,11 @@ import {
 	makeStyles,
 	Button,
 	IconButton,
-	Drawer,
-	Typography,
+	SwipeableDrawer,
 	Link,
+	List,
+	ListItem,
+	ListItemText,
 } from "@material-ui/core";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Grow from "@material-ui/core/Grow";
@@ -22,6 +24,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 import MenuIcon from "@material-ui/icons/Menu";
 import HomeIcon from "@material-ui/icons/Home";
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import ExpandMore from "@material-ui/icons/ExpandMore";
 
 const useStyles = makeStyles(() => ({
 	header: {
@@ -33,12 +37,6 @@ const useStyles = makeStyles(() => ({
 		"@media (max-width: 900px)": {
 			paddingLeft: 0,
 		},
-	},
-	menuButton: {
-		fontFamily: "Open Sans, sans-serif",
-		fontWeight: 700,
-		size: "18px",
-		marginLeft: "38px",
 	},
 	toolbar: {
 		display: "flex",
@@ -65,13 +63,12 @@ const useStyles = makeStyles(() => ({
 		textTransform: "uppercase",
 		textDecoration: "none",
 		padding: "10px",
-		verticalAlign: "baseline",
+		textAlign: "center",
 	},
 }));
 
 export default function Header() {
-	const { header, menuButton, toolbar, drawerContainer, links, sublinks } =
-		useStyles();
+	const { header, toolbar, drawerContainer, links, sublinks } = useStyles();
 
 	const [state, setState] = useState({
 		mobileView: false,
@@ -117,12 +114,17 @@ export default function Header() {
 	const handleToggle = () => {
 		setOpen((prevOpen) => !prevOpen);
 	};
-
 	const handleClose = (event) => {
 		if (anchorRef.current && anchorRef.current.contains(event.target)) {
 			return;
 		}
 		setOpen(false);
+	};
+
+	// Responsive Submenu
+	const [openSubmenu, setOpenSubmenu] = useState(false);
+	const handleOpenSubmenu = () => {
+		setOpenSubmenu(!openSubmenu);
 	};
 
 	function handleListKeyDown(event) {
@@ -138,21 +140,12 @@ export default function Header() {
 		if (prevOpen.current === true && open === false) {
 			anchorRef.current.focus();
 		}
-
 		prevOpen.current = open;
 	}, [open]);
 
 	// HEADER DESKTOP UNTILL 900px
 	const displayDesktop = () => {
 		return (
-			/*
-            <Toolbar className={toolbar}>
-				<RouterLink to="/" color="primary">
-					<HomeIcon />
-				</RouterLink>
-				<div>{getMenuButtons()}</div>
-			</Toolbar>
-            */
 			<div>
 				<Toolbar className={toolbar}>
 					<RouterLink to="/" color="primary">
@@ -251,9 +244,13 @@ export default function Header() {
 							</Button>
 						)}
 
-						<RouterLink className={links} to="/profile">
-							Profile
-						</RouterLink>
+						{logged ? (
+							<RouterLink className={links} to="/profile">
+								Profile
+							</RouterLink>
+						) : (
+							""
+						)}
 					</div>
 				</Toolbar>
 				<AnimatedModal open={openModal} onClose={handleCloseModal} />
@@ -274,81 +271,119 @@ export default function Header() {
 			setState((prevState) => ({ ...prevState, drawerOpen: false }));
 
 		return (
-			<Toolbar>
-				<IconButton
-					{...{
-						edge: "start",
-						color: "inherit",
-						"aria-label": "menu",
-						"aria-haspopup": "true",
-						onClick: handleDrawerOpen,
-					}}
-				>
-					<MenuIcon />
-				</IconButton>
-
-				<Drawer
-					{...{
-						anchor: "left",
-						open: drawerOpen,
-						onClose: handleDrawerClose,
-					}}
-				>
-					<div className={drawerContainer}>{getDrawerChoices()}</div>
-				</Drawer>
-
-				<div>{femmecubatorLogo}</div>
-			</Toolbar>
+			<div>
+				<Collapse in={openReg}>
+					<RegisterSide />
+				</Collapse>
+				<Toolbar className={toolbar}>
+					<RouterLink to="/" color="primary">
+						<HomeIcon />
+					</RouterLink>
+					<IconButton edge="end" onClick={handleDrawerOpen}>
+						<RouterLink to="/" color="primary">
+							<MenuIcon />
+						</RouterLink>
+					</IconButton>
+					<SwipeableDrawer
+						anchor="right"
+						open={drawerOpen}
+						onClose={handleDrawerClose}
+					>
+						<div className={drawerContainer}>
+							<List>
+								<ListItem>
+									<a href="/">
+										<ListItemText primary="Homepage" />
+									</a>
+								</ListItem>
+								<ListItem>
+									<a href="/trends">
+										<ListItemText primary="Trends" />
+									</a>
+								</ListItem>
+								<ListItem button onClick={handleOpenSubmenu}>
+									<ListItemText primary="Categories" />
+									{openSubmenu ? <ExpandLess /> : <ExpandMore />}
+								</ListItem>
+								<Collapse in={openSubmenu} timeout="auto" unmountOnExit>
+									<List component="div">
+										<ListItem>
+											<a href="/category/mobile">
+												<ListItemText primary="Mobiles" />
+											</a>
+										</ListItem>
+										<ListItem>
+											<a href="/category/tablet">
+												<ListItemText primary="Tablets" />
+											</a>
+										</ListItem>
+										<ListItem>
+											<a href="/category/laptop">
+												<ListItemText primary="Laptops" />
+											</a>
+										</ListItem>
+										<ListItem>
+											<a href="/category/desktop">
+												<ListItemText primary="Desktops" />
+											</a>
+										</ListItem>
+										<ListItem>
+											<a href="/category/monitor">
+												<ListItemText primary="Monitors" />
+											</a>
+										</ListItem>
+										<ListItem>
+											<a href="/category/drone">
+												<ListItemText primary="Drones" />
+											</a>
+										</ListItem>
+										<ListItem>
+											<a href="/category/accesories">
+												<ListItemText primary="Accesories" />
+											</a>
+										</ListItem>
+									</List>
+								</Collapse>
+								<ListItem>
+									{logged ? (
+										<ListItem button onClick={logout}>
+											<ListItemText primary="Sign Out" />
+										</ListItem>
+									) : (
+										<ListItem button onClick={handleOpenModal}>
+											<ListItemText primary="Sign In" />
+										</ListItem>
+									)}
+								</ListItem>
+								<ListItem>
+									{logged ? (
+										""
+									) : (
+										<ListItem button onClick={handleRegisterCollapse}>
+											<ListItemText primary="Get Started" />
+										</ListItem>
+									)}
+								</ListItem>
+								<ListItem>
+									{logged ? (
+										<ListItem>
+											<a href="/profile">
+												<ListItemText primary="Profile" />
+											</a>
+										</ListItem>
+									) : (
+										""
+									)}
+								</ListItem>
+							</List>
+						</div>
+					</SwipeableDrawer>
+					<AnimatedModal open={openModal} onClose={handleCloseModal} />
+				</Toolbar>
+			</div>
 		);
 	};
 	// HEADER MOBILE BELOW 899px
-
-	// MENU OPTIONS
-	/*
-	const getDrawerChoices = () => {
-		return headersData.map(({ label, href }) => {
-			return (
-				<Link
-					{...{
-						component: RouterLink,
-						to: href,
-						color: "inherit",
-						style: { textDecoration: "none" },
-						key: label,
-					}}
-				>
-					<MenuItem>{label}</MenuItem>
-				</Link>
-			);
-		});
-	};
-
-	
-	const femmecubatorLogo = (
-		<Typography variant="h6" component="h1" className={logo}>
-			Femmecubator
-		</Typography>
-	);
-
-	const getMenuButtons = () => {
-		return headersData.map(({ label, href }) => {
-			return (
-				<Button
-					{...{
-						key: label,
-						color: "inherit",
-						to: href,
-						component: RouterLink,
-						className: menuButton,
-					}}
-				>
-					{label}
-				</Button>
-			);
-		});
-	};
-    */
-	// MENU OPTIONS
 
 	return (
 		<header>

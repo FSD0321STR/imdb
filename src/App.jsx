@@ -70,8 +70,9 @@ function App() {
 					</Route>
 				</Switch>
 
-				<Search />
-				<Tema />
+   
+          <Search />
+				  <Tema />
 
 				<Footer />
 			</AuthProvider>

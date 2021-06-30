@@ -26,17 +26,13 @@ import CookiesPolicy from "./components/pages/cookiesPolicy";
 import TermsOfUse from "./components/pages/termsOfUse";
 import SearchResults from "./components/pages/searchResults";
 
-
 function App() {
 	return (
 		<BrowserRouter>
-
 			<AuthProvider>
-
 				<Header />
 
 				<Switch>
-
 					<Route exact path="/terms-of-use">
 						<TermsOfUse />
 					</Route>
@@ -57,10 +53,6 @@ function App() {
 						<Contact />
 					</Route>
 
-					
-
-					
-
 					<Route exact path="/about">
 						<About />
 					</Route>
@@ -75,21 +67,15 @@ function App() {
 
 					<Route path="/">
 						<Home />
-						<Search/>
 					</Route>
-
 				</Switch>
-					
-					<Tema/>
-					
-					
-				<Footer /> 
 
+				<Search />
+				<Tema />
+
+				<Footer />
 			</AuthProvider>
-
 		</BrowserRouter>
-
-
 	);
 }
 

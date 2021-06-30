@@ -187,39 +187,57 @@ export default function Header() {
 												onKeyDown={handleListKeyDown}
 											>
 												<MenuItem onClick={handleClose}>
-													<a className={sublinks} href="/category/mobile">
+													<RouterLink
+														className={sublinks}
+														to="/category/mobile"
+													>
 														Mobile
-													</a>
+													</RouterLink>
 												</MenuItem>
 												<MenuItem onClick={handleClose}>
-													<a className={sublinks} href="/category/tablet">
+													<RouterLink
+														className={sublinks}
+														to="/category/tablet"
+													>
 														Tablet
-													</a>
+													</RouterLink>
 												</MenuItem>
 												<MenuItem onClick={handleClose}>
-													<a className={sublinks} href="/category/laptop">
+													<RouterLink
+														className={sublinks}
+														to="/category/laptop"
+													>
 														Laptop
-													</a>
+													</RouterLink>
 												</MenuItem>
 												<MenuItem onClick={handleClose}>
-													<a className={sublinks} href="/category/desktop">
+													<RouterLink
+														className={sublinks}
+														to="/category/desktop"
+													>
 														Desktop
-													</a>
+													</RouterLink>
 												</MenuItem>
 												<MenuItem onClick={handleClose}>
-													<a className={sublinks} href="/category/monitor">
+													<RouterLink
+														className={sublinks}
+														to="/category/monitor"
+													>
 														Monitor
-													</a>
+													</RouterLink>
 												</MenuItem>
 												<MenuItem onClick={handleClose}>
-													<a className={sublinks} href="/category/drone">
+													<RouterLink className={sublinks} to="/category/drone">
 														Drone
-													</a>
+													</RouterLink>
 												</MenuItem>
 												<MenuItem onClick={handleClose}>
-													<a className={sublinks} href="/category/accesories">
+													<RouterLink
+														className={sublinks}
+														to="/category/accesories"
+													>
 														Accesories
-													</a>
+													</RouterLink>
 												</MenuItem>
 											</MenuList>
 										</ClickAwayListener>

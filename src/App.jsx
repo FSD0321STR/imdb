@@ -69,7 +69,7 @@ function App() {
 					</Route>
 				</Switch>
 
-				<Search />
+			
 
 				<Footer />
 			</AuthProvider>

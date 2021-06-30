@@ -1,6 +1,15 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
+import Category from "../categories/category";
+import Search from "../search/search";
 
 export default function Home() {
-	return <Typography component="h1">Home</Typography>;
+	return (
+	<div>
+	<Typography component="h1">Home</Typography>;
+	<Category/>
+	<Search/>
+	</div>
+	);
 }
+

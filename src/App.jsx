@@ -16,7 +16,6 @@ import TopicView from "./components/topics/topicView";
 			<Topic />
 			<Footer />
 		</div> */
-import Tema from "./components/tema/tema";
 import Home from "./components/pages/home";
 import About from "./components/pages/about";
 import Contact from "./components/pages/contact";
@@ -71,7 +70,7 @@ function App() {
 				</Switch>
 
 				<Search />
-				<Tema />
+
 				<Footer />
 			</AuthProvider>
 		</BrowserRouter>

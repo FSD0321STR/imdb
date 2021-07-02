@@ -21,8 +21,11 @@ const useStyles = makeStyles(() => ({
 	card: {},
 	cardDetails: {},
 	cardMedia: {},
-	sidebarAboutBox: {},
 	sidebarSection: {},
+	sidebarAboutBox: {
+		padding: "1.3em",
+		marginBottom: "25px",
+	},
 }));
 
 const featuredTopics = [
@@ -84,10 +87,13 @@ export default function Trends() {
 	const {
 		mainFeaturedPost,
 		mainFeaturedPostContent,
+		mainGrid,
 		card,
 		cardGrid,
 		cardDetails,
 		cardMedia,
+		sidebarSection,
+		sidebarAboutBox,
 	} = useStyles();
 
 	return (
@@ -96,7 +102,7 @@ export default function Trends() {
 				<main>
 					{/* Main featured Topic */}
 					<Paper className={mainFeaturedPost}>
-						<Grid container spacing={3} xs={12}>
+						<Grid item spacing={3} xs={12}>
 							{featuredTopics.map((featuredtopic) => (
 								<Grid item key={featuredtopic.name} md={6}>
 									<div className={mainFeaturedPostContent}>
@@ -112,39 +118,68 @@ export default function Trends() {
 					</Paper>
 					{/* End Main featured Topic */}
 
+					<div style={{ margin: "50px 0" }}>
+						<Typography variant="h5">
+							The rest of the trending topics
+						</Typography>
+						<Divider />
+					</div>
+
 					{/* Start Topics List */}
-					<Grid container className={cardGrid}>
-						{topics.map((topic) => (
-							<Grid item key={topic.name} xs={12} md={6}>
-								<Card className={card}>
-									<CardActionArea>
-										<CardMedia
-											component="img"
-											alt="Contemplative Reptile"
-											height="140"
-											image="/static/images/cards/contemplative-reptile.jpg"
-											title="Contemplative Reptile"
-										/>
-										<CardContent>
-											<Typography gutterBottom variant="h5" component="h3">
-												{topic.name}
-											</Typography>
-											<Typography color="textSecondary" component="p">
-												{topic.desc}
-											</Typography>
-										</CardContent>
-									</CardActionArea>
-									<CardActions>
-										<Button size="small" color="primary">
-											Share
-										</Button>
-										<Button size="small" color="primary">
-											Continue reading...
-										</Button>
-									</CardActions>
-								</Card>
-							</Grid>
-						))}
+					<Grid container className={mainGrid}>
+						<Grid xs={12} md={9} container spacing={4} className={cardGrid}>
+							{topics.map((topic) => (
+								<Grid item key={topic.name}>
+									<Card className={card}>
+										<CardActionArea>
+											<CardMedia
+												component="img"
+												alt="Contemplative Reptile"
+												height="140"
+												image="/static/images/cards/contemplative-reptile.jpg"
+												title="Contemplative Reptile"
+											/>
+											<CardContent>
+												<Typography gutterBottom variant="h5" component="h3">
+													{topic.name}
+												</Typography>
+												<Typography color="textSecondary" component="p">
+													{topic.desc}
+												</Typography>
+											</CardContent>
+										</CardActionArea>
+										<CardActions>
+											<Button size="small" color="primary">
+												Share
+											</Button>
+											<Button size="small" color="primary">
+												Continue reading...
+											</Button>
+										</CardActions>
+									</Card>
+								</Grid>
+							))}
+						</Grid>
+						{/* End Topics List */}
+
+						{/* Sidebar */}
+						<Grid item xs={12} md={3}>
+							<Paper elevation={0} className={sidebarAboutBox}>
+								<Typography gutterBottom>About the Trends</Typography>
+								<Typography gutterBottom>
+									Etiam porta sem malesuada magna mollis euismod. Cras mattis
+									consectetur purus sit amet fermentum. Aenean lacinia bibendum
+									nulla sed consectetur.
+								</Typography>
+							</Paper>
+							<Typography gutterBottom className={sidebarSection}>
+								Archives
+							</Typography>
+							{archives.map((archive) => (
+								<Typography key={archive}>{archive}</Typography>
+							))}
+						</Grid>
+						{/* End sidebar */}
 					</Grid>
 					{/* End Topics List */}
 				</main>

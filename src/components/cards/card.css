@@ -1,4 +1,29 @@
-.cardContiner {
+#categories-card
+{
+    max-height: 450px !important;
+    max-width: 380px !important;
+    margin-bottom: 50px !important;
+}
+
+.view
+{
+    color: #000;
+    border-color: #000;
+    border-color: rgba(117, 117, 117, 1);
+    fill: rgba(41, 41, 41, 1);
+    padding: 7px 20px 9px;
+    font-size: 16px;
+    line-height: 24px;
+    box-sizing: border-box;
+    text-decoration: none;
+    border-style: solid;
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.cardContiner
+{
     display: flex;
-    
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 20px;
 }

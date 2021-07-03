@@ -5,11 +5,10 @@ import Search from "../search/search";
 
 export default function Home() {
 	return (
-	<div>
-	<Typography component="h1">Home</Typography>;
-	<Category/>
-	<Search/>
-	</div>
+		<div>
+			<Typography component="h1">Home</Typography>;
+			<Search />
+			<Category />
+		</div>
 	);
 }
-

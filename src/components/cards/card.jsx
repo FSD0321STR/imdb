@@ -14,6 +14,8 @@ import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Button from '@material-ui/core/Button';
+
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import "./card.css"
 
@@ -50,9 +52,9 @@ const CategoryCard = props => {
 
   return (
     <div class="cardContiner">
-      {props.categories.map((category,index) => {
+      {props.categories.map((category, index) => {
         return (
-          <Card className={classes.root} key={index}>
+          <Card className={classes.root} key={index} id="categories-card">
             <CardHeader
               avatar={
                 <Avatar aria-label="recipe" className={classes.avatar}>
@@ -61,7 +63,7 @@ const CategoryCard = props => {
               }
 
               title={category.title}
-              subheader={category.date}            />
+              subheader={category.date} />
             <CardMedia
               className={classes.media}
               image="https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png"
@@ -71,16 +73,14 @@ const CategoryCard = props => {
               <Typography variant="body2" color="textSecondary" component="p">
                 This impressive paella is a perfect party dish and a fun meal to cook together with your
                 guests. Add 1 cup of frozen peas along with the mussels, if you like.
-              </Typography>
-              <button>View</button>
+              </Typography><br/>
+              <Button variant="contained" color="primary" href="#contained-buttons"> View</Button>
             </CardContent>
 
           </Card>
         )
       })}
-    </div> 
-
-    
+    </div>
 
   );
 }

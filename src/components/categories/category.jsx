@@ -42,6 +42,19 @@ let list_categories = [
         date: "Juny 14." 
 
     },
+
+    {
+        Image: "https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png" , 
+        title: "Category 7" ,
+        date: "Juny 14." 
+
+    },
+    {
+        Image: "https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png" , 
+        title: "Category 8" ,
+        date: "Juny 14." 
+
+    },
 ]
   return (
       <div>

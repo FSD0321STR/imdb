@@ -1,6 +1,6 @@
 #leftBlog{ width: 70%;}
 #rightBlog{ width: 30%;}
-#leftBlog{ padding: 20px; padding-top: 0;}
+#leftBlog{ padding: 20px; padding-top:0px ;}
 .titleBlog
 {
     color: rgba(8, 8, 8, 1);

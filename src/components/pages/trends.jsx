@@ -18,9 +18,16 @@ const useStyles = makeStyles(() => ({
 		padding: "1.3em",
 	},
 	mainFeaturedPostContent: {},
-	card: {},
+	cardGrid: {},
+	card: { marginBottom: "50px" },
 	cardDetails: {},
 	cardMedia: {},
+	topicCat: {
+		marginBottom: "20px",
+		display: "block",
+		fontStyle: "italic",
+		fontWeight: "bold",
+	},
 	sidebarSection: {},
 	sidebarAboutBox: {
 		padding: "1.3em",
@@ -95,6 +102,7 @@ export default function Trends() {
 		cardGrid,
 		cardDetails,
 		cardMedia,
+		topicCat,
 		sidebarSection,
 		sidebarAboutBox,
 	} = useStyles();
@@ -105,14 +113,14 @@ export default function Trends() {
 				<main>
 					{/* Main featured Topic */}
 					<Paper className={mainFeaturedPost}>
-						<Grid item spacing={3} xs={12}>
+						<Grid item xs={12}>
 							{featuredTopics.map((featuredtopic) => (
 								<Grid item key={featuredtopic.name} md={6}>
 									<div className={mainFeaturedPostContent}>
 										<Typography variant="h3" gutterBottom>
 											{featuredtopic.name}
 										</Typography>
-										<Typography variant="caption" gutterBottom>
+										<Typography variant="caption" className={topicCat}>
 											{featuredtopic.category}
 										</Typography>
 										<Typography paragraph>{featuredtopic.desc}</Typography>
@@ -132,29 +140,27 @@ export default function Trends() {
 					</div>
 
 					{/* Start Topics List */}
-					<Grid container className={mainGrid}>
-						<Grid xs={12} md={9} container spacing={4} className={cardGrid}>
+					<Grid container className={mainGrid} spacing={10}>
+						<Grid item xs={12} md={8} className={cardGrid}>
 							{topics.map((topic) => (
 								<Grid item key={topic.name}>
 									<Card className={card}>
 										<CardActionArea>
 											<CardMedia
 												component="img"
-												alt="Contemplative Reptile"
-												height="140"
-												image="/static/images/cards/contemplative-reptile.jpg"
+												alt="Random Image"
+												height="240"
+												image="https://source.unsplash.com/random"
 												title="Contemplative Reptile"
 											/>
 											<CardContent>
 												<Typography gutterBottom variant="h5" component="h3">
 													{topic.name}
 												</Typography>
-												<Typography variant="caption" gutterBottom>
+												<Typography variant="caption" className={topicCat}>
 													{topic.category}
 												</Typography>
-												<Typography color="textSecondary" component="p">
-													{topic.desc}
-												</Typography>
+												<Typography component="p">{topic.desc}</Typography>
 											</CardContent>
 										</CardActionArea>
 										<CardActions>
@@ -172,7 +178,7 @@ export default function Trends() {
 						{/* End Topics List */}
 
 						{/* Sidebar */}
-						<Grid item xs={12} md={3}>
+						<Grid item xs={12} md={4}>
 							<Paper elevation={0} className={sidebarAboutBox}>
 								<Typography gutterBottom>About the Trends</Typography>
 								<Typography gutterBottom>

@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function RegisterSide() {
+export default function RegisterSide({ onClose }) {
 	const { register } = useAuth();
 	const history = useHistory();
 	const [email, setEmail] = useState("");
@@ -60,6 +60,7 @@ export default function RegisterSide() {
 			const user = await register({ email, password, fname, lname });
 			if (user) {
 				history.push("/");
+				onClose(true);
 			} else {
 				alert("Submit failed, please try again");
 			}

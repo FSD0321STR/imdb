@@ -25,42 +25,42 @@ const useStyles = makeStyles(() => ({
 export default function Home() {
 	let list_blog = [
 		{
-			img: "https://miro.medium.com/max/2400/1*4X74D902uwO786PQOWlAcg.jpeg",
+			img: "https://source.unsplash.com/random",
 			title: "This Long-Awaited Technology May Finally Change the World",
 			date: " May 29·6 min read ·Science",
 			sub: "Solid-state batteries are poised to emerge in the coming years",
 			userName: "pepe",
 		},
 		{
-			img: "https://miro.medium.com/max/2400/1*4X74D902uwO786PQOWlAcg.jpeg",
+			img: "https://source.unsplash.com/random",
 			title: "This Long-Awaited Technology May Finally Change the World",
 			date: " May 29·6 min read ·Science",
 			sub: "Solid-state batteries are poised to emerge in the coming years",
 			userName: "pepe",
 		},
 		{
-			img: "https://miro.medium.com/max/2400/1*4X74D902uwO786PQOWlAcg.jpeg",
+			img: "https://source.unsplash.com/random",
 			title: "This Long-Awaited Technology May Finally Change the World",
 			date: " May 29·6 min read ·Science",
 			sub: "Solid-state batteries are poised to emerge in the coming years",
 			userName: "pepe",
 		},
 		{
-			img: "https://miro.medium.com/max/2400/1*4X74D902uwO786PQOWlAcg.jpeg",
+			img: "https://source.unsplash.com/random",
 			title: "This Long-Awaited Technology May Finally Change the World",
 			date: " May 29·6 min read ·Science",
 			sub: "Solid-state batteries are poised to emerge in the coming years",
 			userName: "pepe",
 		},
 		{
-			img: "https://miro.medium.com/max/2400/1*4X74D902uwO786PQOWlAcg.jpeg",
+			img: "https://source.unsplash.com/random",
 			title: "This Long-Awaited Technology May Finally Change the World",
 			date: " May 29·6 min read ·Science",
 			sub: "Solid-state batteries are poised to emerge in the coming years",
 			userName: "pepe",
 		},
 		{
-			img: "https://miro.medium.com/max/2400/1*4X74D902uwO786PQOWlAcg.jpeg",
+			img: "https://source.unsplash.com/random",
 			title: "This Long-Awaited Technology May Finally Change the World",
 			date: " May 29·6 min read ·Science",
 			sub: "Solid-state batteries are poised to emerge in the coming years",

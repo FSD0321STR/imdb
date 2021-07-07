@@ -51,8 +51,36 @@ const userUpdate = ({ user }) => {
         .catch(error => console.error('Error:', error))
 }
 
+const createTopic = ({ topicTile, desc, img }) => {
+    console.log(topicTile, desc, img);
+    return fetch(`${API_URL}/topic`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(topicTile,desc,img)
+    }).then(res => res = res.json())
+        .catch(error => console.error('Error:', error))
+}
+
+const getByCategory = (category) => {
+    return fetch(`${API_URL}/topic/` +category, {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).then(res => res = res.json())
+        .catch(error => console.error('Error:', error))
+}
+
+
+
 export default {
     login,
     register,
-    userUpdate
+    userUpdate,
+    createTopic,
+    getByCategory
 }

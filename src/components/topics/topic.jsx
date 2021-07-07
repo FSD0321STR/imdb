@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState }  from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Input from '@material-ui/core/Input';
@@ -8,6 +8,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import Button from '@material-ui/core/Button';
+import { FilePond } from 'react-filepond';
+import api from "../../utils/auth-api";
 
 
 
@@ -75,10 +77,15 @@ function getStyles(name, personName, theme) {
 export default function Topic() {
 
     const classes = useStyles();
+    const [files, setFiles] = useState([])
+    const [topicTitle, setTopicTitle] = useState("");
+	const [desc, setDesc] = useState("");
     const [categoryName] = React.useState([]);
     const theme = useTheme();
 
-   
+    
+
+
 
     let value = "bitch", error_msg = "error"
     let comments = []
@@ -99,11 +106,16 @@ export default function Topic() {
         return true
     }
 
-    const save = (post) => {
-        comments.push(post)
-        alert("Topic Saved")
-
-    }
+    async function handleSubmit(e) {
+		e.preventDefault();
+		return await api
+			.createTopic({ topicTitle,desc,files })
+			.then((topic) => {
+				console.log(topic)	})
+			.catch((e) => {
+				console.log(e)
+			});
+	}
 
     const handleChange = (event) => {
         setPersonName(event.target.value);
@@ -113,6 +125,13 @@ export default function Topic() {
         value = event.target.value
 
     };
+
+    function handleTopicTitle(e) {
+        setTopicTitle(e.target.value);
+    }
+    function handleDesc(e) {
+        setDesc(e.target.value);
+    }
 
     return (
         <div className={classes.root}>
@@ -124,6 +143,8 @@ export default function Topic() {
                     placeholder="Topic title..."
                     fullWidth
                     margin="normal"
+                    value={topicTitle}
+                    onChange={handleTopicTitle}
                     InputLabelProps={{
                         shrink: true,
                     }}
@@ -136,6 +157,8 @@ export default function Topic() {
                     placeholder="Description"
                     fullWidth
                     margin="normal"
+                    value={desc}
+                    onChange={handleDesc}
                     InputLabelProps={{
                         shrink: true,
                     }}
@@ -170,7 +193,16 @@ export default function Topic() {
                     onChange={handleChangePost}
                 />
 
-                <Button variant="contained" color="primary" onClick={topicPost}>
+                <FilePond
+                    files={files}
+                    onupdatefiles={setFiles}
+                    allowMultiple={true}
+                    maxFiles={3}
+                    name="files"
+                    labelIdle='Drag Drop your files or <span class="filepond--label-action">Browse</span>'
+                />
+
+                <Button variant="contained" color="primary" onClick={handleSubmit}>
                     Save
                 </Button>
             </div>

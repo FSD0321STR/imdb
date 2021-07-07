@@ -9,7 +9,7 @@ import Blog from "../blogs/blog";
 import "./home.css";
 
 const useStyles = makeStyles(() => ({
-	layout: {},
+	layout: { paddingTop: "60px" },
 	sectiontop: {
 		minHeight: "300px",
 		marginBottom: "50px",

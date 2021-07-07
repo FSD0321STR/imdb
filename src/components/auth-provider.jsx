@@ -37,9 +37,15 @@ function AuthProvider({ children }) {
 		return await api
 			.register({ email, password, fname, lname })
 			.then((token) => {
-				dispatch({ type: "register", token: token.token });
-				localStorage.setItem("token", token.token);
-				return token.token;
+				dispatch({ type: "register", token: token });
+				if (token.token !== undefined) {
+					localStorage.setItem("token", token.token);
+					localStorage.setItem("user", JSON.stringify(token.user));
+					return token.token;
+				} else {
+					dispatch({ type: "logout", token: token });
+					return alert("Error");
+				}
 			})
 			.catch((e) => {
 				dispatch({ type: "logout" });
@@ -52,9 +58,14 @@ function AuthProvider({ children }) {
 			.login({ email, password })
 			.then((token) => {
 				dispatch({ type: "login", token: token });
-				localStorage.setItem("token", token.token);
-				localStorage.setItem("user", JSON.stringify(token.user));
-				return token.token;
+				if (token.token !== undefined) {
+					localStorage.setItem("token", token.token);
+					localStorage.setItem("user", JSON.stringify(token.user));
+					return token.token;
+				} else {
+					dispatch({ type: "logout", token: token });
+					return alert("Error");
+				}
 			})
 			.catch((e) => {
 				dispatch({ type: "logout" });

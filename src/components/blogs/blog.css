@@ -1,0 +1,39 @@
+#leftBlog{ width: 70%;}
+#rightBlog{ width: 30%;}
+#leftBlog{ padding: 20px; padding-top:0px ;}
+.titleBlog
+{
+    color: rgba(8, 8, 8, 1);
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    letter-spacing: -0.05em;
+    line-height: 30px;
+    margin: 0;
+    font-size: 15px;
+    cursor: pointer;
+
+}
+
+.subBlog, .meta-info
+{
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: rgba(41, 41, 41, 1);
+    font-size: 12px;
+    line-height: 24px;
+}
+
+.meta-info{ font-size: 10px;}
+
+.blog
+{
+    max-width: 500px;
+    max-height: auto;
+}
+
+.imgBlog
+{
+    width: 100%;
+    height: auto;
+    max-height: 100px;
+    vertical-align: middle;
+
+}

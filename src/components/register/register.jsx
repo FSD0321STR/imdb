@@ -59,8 +59,8 @@ export default function RegisterSide({ onClose }) {
 		} else {
 			const user = await register({ email, password, fname, lname });
 			if (user) {
-				history.push("/");
 				onClose(true);
+				history.push("/profile");
 			} else {
 				alert("Submit failed, please try again");
 			}

@@ -1,4 +1,5 @@
 import React from "react";
+import useAuth from "../../hooks/use-auth";
 import Typography from "@material-ui/core/Typography";
 import Category from "../categories/category";
 import Search from "../search/search";
@@ -23,6 +24,8 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function Home() {
+	const { logged, logout } = useAuth();
+
 	let list_blog = [
 		{
 			img: "https://source.unsplash.com/random",
@@ -82,10 +85,15 @@ export default function Home() {
 							It's easy and free to post your thinking on any topic and connect
 							with millions of readers.
 						</p>
+
 						<Grid container spacing={3}>
-							<Grid item xs={3}>
-								<button class="start"> Start Writing</button>
-							</Grid>
+							{logged ? (
+								<Grid item xs={3}>
+									<button class="start"> Start Writing</button>
+								</Grid>
+							) : (
+								""
+							)}
 							<Grid item xs={3}>
 								<Search />
 							</Grid>

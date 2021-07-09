@@ -30,7 +30,6 @@ import ExpandMore from "@material-ui/icons/ExpandMore";
 const useStyles = makeStyles(() => ({
 	header: {
 		position: "relative",
-		marginBottom: "60px",
 		backgroundColor: "#efefef",
 		paddingRight: "0",
 		paddingLeft: "0",
@@ -107,7 +106,7 @@ export default function Header() {
 	};
 
 	const [openReg, setOpenReg] = useState(false);
-	const handleRegisterCollapse = (event) => {
+	const handleRegisterCollapse = () => {
 		setOpenReg((prev) => !prev);
 	};
 
@@ -274,7 +273,7 @@ export default function Header() {
 				<AnimatedModal open={openModal} onClose={handleCloseModal} />
 
 				<Collapse in={openReg}>
-					<RegisterSide />
+					<RegisterSide onClose={handleRegisterCollapse} />
 				</Collapse>
 			</div>
 		);

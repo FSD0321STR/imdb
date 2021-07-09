@@ -77,7 +77,7 @@ function getStyles(name, personName, theme) {
 export default function Topic() {
 
     const classes = useStyles();
-    const [files, setFiles] = useState([])
+    const [files, setFiles] = useState([]);
     const [topicTitle, setTopicTitle] = useState("");
 	const [desc, setDesc] = useState("");
     const [categoryName] = React.useState([]);
@@ -108,8 +108,10 @@ export default function Topic() {
 
     async function handleSubmit(e) {
 		e.preventDefault();
+        console.log(topicTitle, desc, files[0]);
+        const f = files[0];
 		return await api
-			.createTopic({ topicTitle,desc,files })
+			.createTopic({ topicTitle,desc,f})
 			.then((topic) => {
 				console.log(topic)	})
 			.catch((e) => {

@@ -51,15 +51,17 @@ const userUpdate = ({ user }) => {
         .catch(error => console.error('Error:', error))
 }
 
-const createTopic = ({ topicTile, desc, img }) => {
-    console.log(topicTile, desc, img);
+const createTopic = ({ topicTitle, desc, f }) => {
+    console.log(topicTitle, desc, f);
+    const file = JSON.stringify(f);
+    console.log(file);
     return fetch(`${API_URL}/topic`, {
         method: 'POST',
         mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(topicTile,desc,img)
+        body: JSON.stringify({topicTitle,desc,file})
     }).then(res => res = res.json())
         .catch(error => console.error('Error:', error))
 }

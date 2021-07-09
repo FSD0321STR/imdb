@@ -1,12 +1,16 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-
+import ContactForm from "./../form/ContactForm";
 
 export default function Contact() {
 
     return (
-        <Typography component="h1">
-            Contact
-        </Typography>
+        <div>
+            <Typography component="h1">
+                Contact
+            </Typography>
+            <ContactForm />
+        </div>
+
     );
 }

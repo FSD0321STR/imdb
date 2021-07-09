@@ -77,6 +77,18 @@ const getByCategory = (category) => {
         .catch(error => console.error('Error:', error))
 }
 
+const getCategories = () => {
+    return fetch(`${API_URL}/category/`, {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).then(res => res = res.json())
+        .catch(error => console.error('Error:', error))
+}
+
+
 
 
 export default {
@@ -84,5 +96,6 @@ export default {
     register,
     userUpdate,
     createTopic,
-    getByCategory
+    getByCategory,
+    getCategories
 }

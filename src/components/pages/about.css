@@ -1,0 +1,168 @@
+.container
+{
+    width: 100%;
+    padding: 5px;
+    height: auto;
+}
+
+.flex
+{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+#left , #right{ width: 50%;}
+
+#left{ padding: 20px; padding-top: 0;}
+#right{ 
+    
+   background-image: url("https://cdn.pixabay.com/photo/2016/02/19/10/00/laptop-1209008_960_720.jpg");
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.title
+{
+    color: rgba(8, 8, 8, 1);
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    letter-spacing: -0.05em;
+    line-height: 74px;
+    margin: 0;
+    font-size: 70px;
+
+}
+
+.sub
+{
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: rgba(41, 41, 41, 1);
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.start
+{
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border-radius: 99em;
+    border-width: 1px;
+    border-style: solid;
+    box-sizing: border-box;
+    text-decoration: none;
+    line-height: 24px;
+    font-size: 16px;
+    padding: 7px 20px 9px;
+    background: #fff;
+    color: #000;
+    border-color: #000;
+    fill: rgba(41, 41, 41, 1);
+    overflow: visible;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.color-black {
+    color: #000000;
+}
+
+.section-heading__kicker {
+    font-weight: 700;
+    color: #6b7177;
+}
+h5, .heading--5 {
+    display: block;
+    margin-bottom: 1.4285714286em;
+    color: #212326;
+    font-size: 0.875em;
+    line-height: 1.1428571429;
+    font-weight: 800;
+    font-family: ShopifySans, Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.04375em;
+}
+main p, main ul, main ol {
+    margin-bottom: 1em;
+    line-height: 1.5;
+    font-size: 1em;
+}
+p, ul, ol {
+    margin: 0;
+    padding: 0;
+}
+
+.about-hero__heading {
+    font-weight: 800;
+}
+
+h1, .heading--1 {
+    -webkit-font-kerning: normal;
+    font-kerning: normal;
+    font-variant-ligatures: common-ligatures contextual discretionary-ligatures;
+    font-feature-settings: 'kern', 'liga', 'clig', 'calt', 'dlig';
+    display: block;
+    margin-bottom: 0.7142857143em;
+    color: #212326;
+    font-size: 1.75em;
+    line-height: 1.2142857143;
+    font-weight: 800;
+    font-family: ShopifySans, Helvetica, Arial, sans-serif;
+    letter-spacing: -0.0207142857em;
+}
+h1, h2, h3, h4, h5 {
+    margin-top: 0;
+}
+
+
+.section-heading__subhead {
+    font-weight: 400;
+    color: #6b7177;
+}
+
+h3, .heading--3 {
+    display: block;
+    font-size: 1.25em;
+    margin-bottom: 0.9em;
+    color: #212326;
+    line-height: 1.33333;
+    font-weight: 400;
+    font-family: ShopifySans, Helvetica, Arial, sans-serif;
+}
+
+h2, .heading--2 {
+    -webkit-font-kerning: normal;
+    font-kerning: normal;
+    font-variant-ligatures: common-ligatures contextual discretionary-ligatures;
+    font-feature-settings: 'kern', 'liga', 'clig', 'calt', 'dlig';
+    display: block;
+    margin-bottom: 0.8333333333em;
+    color: #212326;
+    font-size: 1.5em;
+    line-height: 1.3333333333;
+    font-weight: 400;
+    font-family: ShopifySans, Helvetica, Arial, sans-serif;
+}
+main p, main ul, main ol {
+    margin-bottom: 1em;
+    line-height: 1.5;
+    font-size: 1em;
+}
+
+img.lazyloaded[data-srcset] {
+    opacity: 1;
+}
+img[data-srcset] {
+    opacity: 0;
+    transition: opacity 150ms linear;
+}
+.lazyload-image img {
+    display: block;
+}
+img {
+    max-width: 100%;
+}
+
+p{
+    font-size: 200px;
+    color: black;
+}

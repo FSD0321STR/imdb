@@ -69,16 +69,10 @@ function getStyles(name, personName, theme) {
 }
 
 export default function Topic() {
-<<<<<<< HEAD
 
     const classes = useStyles();
     const [files, setFiles] = useState([]);
     const [topicTitle, setTopicTitle] = useState("");
-=======
-	const classes = useStyles();
-	const [files, setFiles] = useState([]);
-	const [topicTitle, setTopicTitle] = useState("");
->>>>>>> a2585ad963121bc4f3d3609443f40f079d72ebe2
 	const [desc, setDesc] = useState("");
 	const [categoryName] = React.useState([]);
 	const theme = useTheme();
@@ -108,11 +102,7 @@ export default function Topic() {
         console.log(topicTitle, desc, files[0]);
         const f = files[0];
 		return await api
-<<<<<<< HEAD
 			.createTopic({ topicTitle,desc,f})
-=======
-			.createTopic({ topicTitle, desc, files })
->>>>>>> a2585ad963121bc4f3d3609443f40f079d72ebe2
 			.then((topic) => {
 				console.log(topic);
 			})

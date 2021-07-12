@@ -1,52 +1,36 @@
 import React, { useState } from "react";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
-import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
+import ListItemText from "@material-ui/core/ListItemText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
-import { FilePond } from 'react-filepond';
+import Chip from "@material-ui/core/Chip";
+import { FilePond } from "react-filepond";
 import api from "../../utils/auth-api";
 
-const useStyles = makeStyles((theme) => ({
-	root: {
-		display: "flex",
-		flexWrap: "wrap",
-	},
-	textField: {
-		marginLeft: theme.spacing(1),
-		marginRight: theme.spacing(1),
-		width: "25ch",
+const useStyles = makeStyles(() => ({
+	layout: {},
+	form: {},
+	formField: {
+		margin: "0 0 25px",
 	},
 	formControl: {
-		margin: theme.spacing(1),
-		minWidth: 120,
+		minWidth: 200,
 		maxWidth: 300,
 	},
-	chips: {
+	categlabels: {
 		display: "flex",
 		flexWrap: "wrap",
 	},
-	chip: {
-		margin: 2,
-	},
-	noLabel: {
-		marginTop: theme.spacing(3),
+	categlabel: {
+		margin: 5,
 	},
 }));
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-	PaperProps: {
-		style: {
-			maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-			width: 250,
-		},
-	},
-};
 
 const categories = [
 	"Mobiles",
@@ -59,24 +43,24 @@ const categories = [
 	"Tech & Trend",
 ];
 
-function getStyles(name, personName, theme) {
-	return {
-		fontWeight:
-			personName.indexOf(name) === -1
-				? theme.typography.fontWeightRegular
-				: theme.typography.fontWeightMedium,
-	};
-}
-
 export default function Topic() {
+	const {
+		layout,
+		form,
+		formField,
+		formControl,
+		categlabels,
+		categlabel,
+		uploadimg,
+	} = useStyles();
 
-    const classes = useStyles();
-    const [files, setFiles] = useState([]);
-    const [topicTitle, setTopicTitle] = useState("");
+	const classes = useStyles();
+	const [files, setFiles] = useState([]);
+	const [topicTitle, setTopicTitle] = useState("");
 	const [desc, setDesc] = useState("");
-	const [categoryName] = React.useState([]);
-	const theme = useTheme();
+	const [categoryName, setCategoryName] = useState([]);
 
+	// Word Filters
 	let value = "bitch",
 		error_msg = "error";
 	let comments = [];
@@ -86,7 +70,7 @@ export default function Topic() {
 		else alert(error_msg);
 	};
 	const goodTopic = (post) => {
-		let res = post.split(" ");
+		let res = post.split("");
 		console.log(res);
 		console.log(blackList);
 
@@ -99,10 +83,10 @@ export default function Topic() {
 
 	async function handleSubmit(e) {
 		e.preventDefault();
-        console.log(topicTitle, desc, files[0]);
-        const f = files[0];
+		console.log(topicTitle, desc, files[0]);
+		const f = files[0];
 		return await api
-			.createTopic({ topicTitle,desc,f})
+			.createTopic({ topicTitle, desc, f })
 			.then((topic) => {
 				console.log(topic);
 			})
@@ -112,11 +96,7 @@ export default function Topic() {
 	}
 
 	const handleChange = (event) => {
-		setPersonName(event.target.value);
-	};
-
-	const handleChangePost = (event) => {
-		value = event.target.value;
+		setCategoryName(event.target.value);
 	};
 
 	function handleTopicTitle(e) {
@@ -128,79 +108,94 @@ export default function Topic() {
 
 	return (
 		<div className={classes.root}>
-			<div>
+			<form
+				className={form}
+				noValidate
+				autoComplete="off"
+				onSubmit={handleSubmit}
+			>
 				<TextField
-					id="standard-full-width"
+					id="topic-title"
 					label="Topic title"
-					style={{ margin: 8 }}
-					placeholder="Topic title..."
-					fullWidth
-					margin="normal"
 					value={topicTitle}
 					onChange={handleTopicTitle}
-					InputLabelProps={{
-						shrink: true,
-					}}
-				/>
-
-				<TextField
-					id="standard-full-width"
-					label="Description..."
-					style={{ margin: 8 }}
-					placeholder="Description"
 					fullWidth
-					margin="normal"
-					value={desc}
-					onChange={handleDesc}
-					InputLabelProps={{
-						shrink: true,
-					}}
+					multiline={true}
+					className={formField}
 				/>
-
-				<FormControl className={classes.formControl}>
-					<InputLabel id="categoryMulti">Category</InputLabel>
+				<FormControl className={formControl}>
+					<InputLabel id="">Categories of Topic</InputLabel>
 					<Select
-						labelId="categoryMultiLabel"
-						id="categoryMultiSelect"
+						className={formField}
+						labelId=""
+						id=""
 						multiple
+						fullWidth
 						value={categoryName}
 						onChange={handleChange}
-						input={<Input />}
-						MenuProps={MenuProps}
+						renderValue={(selected) => (
+							<div className={categlabels}>
+								{selected.map((value) => (
+									<Chip key={value} label={value} className={categlabel} />
+								))}
+							</div>
+						)}
 					>
 						{categories.map((category) => (
-							<MenuItem
-								key={category}
-								value={category}
-								style={getStyles(category, categoryName, theme)}
-							>
+							<MenuItem key={category} value={category}>
 								{category}
 							</MenuItem>
 						))}
 					</Select>
 				</FormControl>
-				<InputLabel id="topicDoc">Topic</InputLabel>
-				<TextareaAutosize
-					rowsMax={4}
-					aria-label="maximum height"
-					placeholder="Maximum 4 rows"
-					defaultValue=""
-					onChange={handleChangePost}
+				<TextField
+					id="topic-content"
+					label="Write your topic content..."
+					multiline
+					fullWidth
+					rows={4}
+					value={desc}
+					onChange={handleDesc}
+					className={formField}
 				/>
-
+				{/*
+				<FormControl className={classes.formControl}>
+					<InputLabel id="categoryMulti" fullWidth>
+						Category
+					</InputLabel>
+					<Select
+						labelId="categoryMultiLabel"
+						id="categoryMultiSelect"
+						multiple
+						fullWidth
+						value={categoryName}
+						onChange={handleChange}
+						input={<Input />}
+					>
+						{categories.map((category) => (
+							<MenuItem key={category} value={category}>
+								{category}
+							</MenuItem>
+						))}
+					</Select>
+				</FormControl>
+				*/}
 				<FilePond
 					files={files}
-					onupdatefiles={setFiles}
 					allowMultiple={true}
-					maxFiles={3}
-					name="files"
-					labelIdle='Drag Drop your files or <span class="filepond--label-action">Browse</span>'
+					onupdatefiles={setFiles}
+					imagePreviewHeight={-50}
+					imageCropAspectRatio={"1:1"}
+					imageResizeTargetWidth={200}
+					imageResizeTargetHeight={200}
+					stylePanelLayout={"circle"}
+					labelIdle='Drag & Drop your files or{" "}
+				<span class="filepond--label-action">Browse</span>'
 				/>
-
-				<Button variant="contained" color="primary" onClick={handleSubmit}>
+				<Button variant="contained" color="primary">
 					Save
 				</Button>
-			</div>
+			</form>
 		</div>
 	);
 }

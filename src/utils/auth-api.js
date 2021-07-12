@@ -53,15 +53,14 @@ const userUpdate = ({ user }) => {
 
 const createTopic = ({ topicTitle, desc, f }) => {
     console.log(topicTitle, desc, f);
-    const file = JSON.stringify(f);
-    console.log(file);
+    const formData = new FormData();
+    formData.append("topicTitle",topicTitle);
+    formData.append("desc",desc);
+    formData.append("file",f.file);
     return fetch(`${API_URL}/topic`, {
         method: 'POST',
         mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({topicTitle,desc,file})
+        body: formData
     }).then(res => res = res.json())
         .catch(error => console.error('Error:', error))
 }

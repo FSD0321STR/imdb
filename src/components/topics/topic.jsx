@@ -8,7 +8,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import Button from "@material-ui/core/Button";
-//import { FilePond } from 'react-filepond';
+import { FilePond } from 'react-filepond';
 import api from "../../utils/auth-api";
 
 const useStyles = makeStyles((theme) => ({

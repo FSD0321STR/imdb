@@ -10,7 +10,11 @@ import Select from "@material-ui/core/Select";
 import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import Chip from "@material-ui/core/Chip";
-import { FilePond } from "react-filepond";
+import { FilePond, registerPlugin } from "react-filepond";
+import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+
 import api from "../../utils/auth-api";
 
 const useStyles = makeStyles(() => ({
@@ -30,6 +34,7 @@ const useStyles = makeStyles(() => ({
 	categlabel: {
 		margin: 5,
 	},
+	submitBtn: { marginTop: "100px" },
 }));
 
 const categories = [
@@ -43,6 +48,8 @@ const categories = [
 	"Tech & Trend",
 ];
 
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
+
 export default function Topic() {
 	const {
 		layout,
@@ -51,7 +58,7 @@ export default function Topic() {
 		formControl,
 		categlabels,
 		categlabel,
-		uploadimg,
+		submitBtn,
 	} = useStyles();
 
 	const classes = useStyles();
@@ -108,12 +115,7 @@ export default function Topic() {
 
 	return (
 		<div className={classes.root}>
-			<form
-				className={form}
-				noValidate
-				autoComplete="off"
-				onSubmit={handleSubmit}
-			>
+			<form className={form} noValidate autoComplete="off">
 				<TextField
 					id="topic-title"
 					label="Topic title"
@@ -180,19 +182,22 @@ export default function Topic() {
 					</Select>
 				</FormControl>
 				*/}
+
 				<FilePond
 					files={files}
 					allowMultiple={true}
 					onupdatefiles={setFiles}
-					imagePreviewHeight={-50}
+					imagePreviewHeight={500}
 					imageCropAspectRatio={"1:1"}
-					imageResizeTargetWidth={200}
-					imageResizeTargetHeight={200}
-					stylePanelLayout={"circle"}
-					labelIdle='Drag & Drop your files or{" "}
-				<span class="filepond--label-action">Browse</span>'
+					stylePanelLayout={"square"}
+					labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
 				/>
-				<Button variant="contained" color="primary">
+				<Button
+					className={submitBtn}
+					onClick={handleSubmit}
+					variant="contained"
+					color="primary"
+				>
 					Save
 				</Button>
 			</form>

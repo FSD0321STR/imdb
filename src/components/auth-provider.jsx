@@ -4,9 +4,9 @@ import api from "../utils/auth-api";
 export const AuthContext = createContext(null);
 
 const token = localStorage.getItem("token");
-const user = JSON.parse(localStorage.getItem("user"));
 
 const initialState = {
+	user: JSON.parse(localStorage.getItem("user")),
 	logged: token !== null,
 };
 
@@ -16,16 +16,19 @@ const reducer = (state, action) => {
 			return {
 				...state,
 				logged: true,
+				user: action.user,
 			};
 		case "logout":
 			return {
 				...state,
 				logged: false,
+				user: null,
 			};
 		case "register":
 			return {
 				...state,
 				logged: true,
+				user: action.user,
 			};
 	}
 };
@@ -37,10 +40,10 @@ function AuthProvider({ children }) {
 		return await api
 			.register({ email, password, fname, lname })
 			.then((token) => {
-				dispatch({ type: "register", token: token });
 				if (token.token !== undefined) {
 					localStorage.setItem("token", token.token);
 					localStorage.setItem("user", JSON.stringify(token.user));
+					dispatch({ type: "register", user: token.user });
 					return token.token;
 				} else {
 					dispatch({ type: "logout", token: token });
@@ -57,10 +60,11 @@ function AuthProvider({ children }) {
 		return await api
 			.login({ email, password })
 			.then((token) => {
-				dispatch({ type: "login", token: token });
+				console.log(token);
 				if (token.token !== undefined) {
 					localStorage.setItem("token", token.token);
 					localStorage.setItem("user", JSON.stringify(token.user));
+					dispatch({ type: "login", user: token.user });
 					return token.token;
 				} else {
 					dispatch({ type: "logout", token: token });
@@ -80,9 +84,7 @@ function AuthProvider({ children }) {
 	};
 
 	return (
-		<AuthContext.Provider
-			value={{ ...state, token, user, login, logout, register }}
-		>
+		<AuthContext.Provider value={{ ...state, token, login, logout, register }}>
 			{children}
 		</AuthContext.Provider>
 	);

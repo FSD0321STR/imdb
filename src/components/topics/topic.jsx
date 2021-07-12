@@ -192,7 +192,7 @@ export default function Topic() {
 					onupdatefiles={setFiles}
 					stylePanelLayout={"square"}
 					dropOnPage
-					labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
+					labelIdle='Drag & Drop the image of the topic or <span class="filepond--label-action">Browse</span>'
 				/>
 				<Button onClick={handleSubmit} variant="contained" color="primary">
 					Save

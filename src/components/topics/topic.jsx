@@ -11,6 +11,8 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import Chip from "@material-ui/core/Chip";
 import { FilePond, registerPlugin } from "react-filepond";
+import "filepond/dist/filepond.min.css";
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
@@ -186,18 +188,13 @@ export default function Topic() {
 				<FilePond
 					files={files}
 					allowMultiple={true}
+					name="photo"
 					onupdatefiles={setFiles}
-					imagePreviewHeight={500}
-					imageCropAspectRatio={"1:1"}
 					stylePanelLayout={"square"}
+					dropOnPage
 					labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
 				/>
-				<Button
-					className={submitBtn}
-					onClick={handleSubmit}
-					variant="contained"
-					color="primary"
-				>
+				<Button onClick={handleSubmit} variant="contained" color="primary">
 					Save
 				</Button>
 			</form>

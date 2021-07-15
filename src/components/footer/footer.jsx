@@ -85,9 +85,7 @@ export default function Footer() {
 					<Button>
 						<Link to="/cookies-policy">Cookies Policy</Link>
 					</Button>
-					<Button>
-						<Link to="/terms-of-use">Terms of Use</Link>
-					</Button>
+					
 				</Grid>
 			</Grid>
 			<Box>

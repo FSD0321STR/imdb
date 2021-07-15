@@ -15,7 +15,6 @@ import Contact from "./components/pages/contact";
 import Profile from "./components/pages/profile";
 import PrivacyPolicy from "./components/pages/privacyPolicy";
 import CookiesPolicy from "./components/pages/cookiesPolicy";
-import TermsOfUse from "./components/pages/termsOfUse";
 import SearchResults from "./components/pages/searchResults";
 
 function App() {
@@ -28,10 +27,6 @@ function App() {
 					<Private exact path="/profile">
 						<Profile />
 					</Private>
-
-					<Route exact path="/terms-of-use">
-						<TermsOfUse />
-					</Route>
 
 					<Route exact path="/cookies-policy">
 						<CookiesPolicy />

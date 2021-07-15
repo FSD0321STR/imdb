@@ -31,61 +31,67 @@ export default function About() {
 	const { layout, pageTitle, image, colText, colLeft, colRight } = useStyles();
 
 	return (
-		<Container>
-			<div className={layout}>
-				<Typography component="h1" className={pageTitle}>
-					About us
-				</Typography>
+		<div className={layout}>
+			<div class="site-content">
+				<div class="mdl-grid site-max-width">
+					<div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp page-content">
+						<div class="mdl-card__title">
+							<h1 class="mdl-card__title-text">About</h1>
+						</div>
+						<div class="mdl-card__media"><img class="article-image" src="img/about.jpg" border="0" alt="About" />
+						</div>
+						<div class="mdl-grid site-copy">
+							<div class="mdl-cell mdl-cell--12-col">
+								<h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Introduction</h3>
+								<div class="mdl-cell mdl-cell--8-col mdl-card__supporting-text no-padding ">
+									<p>	We are a website developed from 3 guys who started studying
+										online programming, and they made us create a project, which you
+										are seeing right now. Reviwer is a page so that you can see
+										react and comment on posts, blogs or technological categories
+										that you like the most. Between everyone in the community we
+										bring and post new news or technological trends in the page..</p>
 
-				<Grid container>
-					<Grid container spacing={0}>
-						<Grid item xs={12} sm={6}>
-							<Typography variant="h4">
-								Reviwer powers over 1,700,000 businesses worldwide
-							</Typography>
-							<br />
-							<Typography>
-								We are a website developed from 3 guys who started studying
-								online programming, and they made us create a project, which you
-								are seeing right now. Reviwer is a page so that you can see
-								react and comment on posts, blogs or technological categories
-								that you like the most. Between everyone in the community we
-								bring and post new news or technological trends in the page.
-							</Typography>
-						</Grid>
-						<Grid item xs={12} sm={6}>
-							<Box>
-								<img
-									className={image}
-									src="https://source.unsplash.com/random"
-								/>
-							</Box>
-						</Grid>
-					</Grid>
-					<Grid container spacing={0}>
-						<Grid className={colLeft} item xs={12} sm={6}>
-							<Box>
-								<img
-									className={image}
-									src="https://source.unsplash.com/random"
-								/>
-							</Box>
-						</Grid>
-						<Grid className={colRight} item xs={12} sm={6}>
-							<Typography variant="h4">Mission </Typography>
-							<br />
-							<Typography>
-								We are a website developed from 3 guys who started studying
-								online programming, and they made us create a project, which you
-								are seeing right now. Reviwer is a page so that you can see
-								react and comment on posts, blogs or technological categories
-								that you like the most. Between everyone in the community we
-								bring and post new news or technological trends in the page.
-							</Typography>
-						</Grid>
-					</Grid>
-				</Grid>
+								</div>
+								<h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Mission</h3>
+								<div class="mdl-cell mdl-cell--8-col mdl-card__supporting-text no-padding ">
+									<p>
+										Reviwer's mission is to deepen readers' understanding of the world and to empower writers to share their best work and biggest ideas. ...
+										Our product allows the best ideas to rise to the top and elevates the most passionate, diverse voices.
+									</p>
+								</div>
+								<h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Team</h3>
+								<div class="mdl-grid">
+									<div class="mdl-cell mdl-cell--4-col">
+										<div class="demo-card-image mdl-card mdl-shadow--2dp person1">
+											<div class="mdl-card__title mdl-card--expand"></div>
+											<div class="mdl-card__actions">
+												<span class="demo-card-image__filename">Moner </span>
+											</div>
+										</div>
+									</div>
+									<div class="mdl-cell mdl-cell--4-col">
+										<div class="demo-card-image mdl-card mdl-shadow--2dp person2">
+											<div class="mdl-card__title mdl-card--expand"></div>
+											<div class="mdl-card__actions">
+												<span class="demo-card-image__filename">Georgios</span>
+											</div>
+										</div>
+									</div>
+
+									<div class="mdl-cell mdl-cell--4-col">
+										<div class="demo-card-image mdl-card mdl-shadow--2dp person3">
+											<div class="mdl-card__title mdl-card--expand"></div>
+											<div class="mdl-card__actions">
+												<span class="demo-card-image__filename">Jash</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-		</Container>
+		</div>
 	);
 }

@@ -7,7 +7,7 @@ const Blog = props => {
         <div class="blog">
             {props.blogs.map((blog, index) => {
                 return (
-                    <section class="container flex">
+                    <section class="container flex"  key={index}>
 
                         <div id="leftBlog">
                             <h4 class="titleBlog"> {blog.title} </h4>

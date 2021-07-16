@@ -51,12 +51,13 @@ const userUpdate = ({ user }) => {
         .catch(error => console.error('Error:', error))
 }
 
-const createTopic = ({ topicTitle, desc, f }) => {
+const createTopic = ({ topicTitle, desc,categoryName, f }) => {
     console.log(topicTitle, desc, f);
     const formData = new FormData();
     formData.append("topicTitle",topicTitle);
     formData.append("desc",desc);
     formData.append("file",f.file);
+    formData.append("category",categoryName);
     return fetch(`${API_URL}/topic`, {
         method: 'POST',
         mode: 'cors',

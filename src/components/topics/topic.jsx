@@ -95,9 +95,9 @@ export default function Topic() {
 		console.log(topicTitle, desc, files[0]);
 		const f = files[0];
 		return await api
-			.createTopic({ topicTitle, desc, f })
+			.createTopic({ topicTitle, desc, categoryName, f })
 			.then((topic) => {
-				console.log(topic);
+				alert("Topic created");
 			})
 			.catch((e) => {
 				console.log(e);
